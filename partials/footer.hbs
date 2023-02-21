@@ -3,15 +3,6 @@
    </div>
    <div class="container mx-auto">
       <div class=" bg-white shadow p-8 md:p-14 rounded-lg mb-8 lg:mb-12 relative z-10">
-         <div class="newsletter-cta grid gap-6 grid-cols-1 lg:grid-cols-12 items-center border-b border-blue-100 pb-8 lg:pb-12 mb-8 lg:mb-16">
-            <div class="lg:col-span-6 xl:col-span-8">
-               <h3 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-3"> {{t "Subscribe to Learn"}} 📫</h3>
-               <p class="text-base leading-relaxed text-gray-400 font-normal">               {{t "Subscribe to receive latest courses, news, and updates."}}</p>
-            </div>
-            <div class="lg:col-span-6 xl:col-span-4">
-               {{> newsletter}}
-            </div>
-         </div>
          <div class="footer-list">
             {{navigation type="secondary"}}
          </div>
@@ -51,8 +42,7 @@
                <span id="spanYear">
                   <script> document.getElementById('spanYear').innerHTML = new Date('Y'); </script>
                </span>
-               {{@custom.footer_note}} | {{t "Developed by"}} <a class="text-gray-800 hover:text-blue-800 duration-300" rel="nofollow"
-                  href="https://www.themeix.com/">{{t "Themeix"}}</a> <br>  {{t "Published with"}} <a class="text-gray-800 hover:text-blue-800 duration-300" rel="nofollow" href="https://ghost.org?via=themeix75">Ghost</a>
+               {{@custom.footer_note}}
             </p>
          </div>
          {{/if}}
