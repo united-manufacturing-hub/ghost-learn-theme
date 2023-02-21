@@ -29,19 +29,6 @@
             </div>
             <div class="gh-canvas">
                {{!-- {{> page-navigation}} --}}
-                <!-- For micro courses show other micro courses -->
-                {{#get "posts" limit="2" filter="id:-{{post.id}}" order="title asc" include="tags,authors"}}
-                <div class="related-lesson">
-                   <div class="section-title max-w-lg mb-8">
-                      <h2 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-6">{{t "Related Articles"}}</h2>
-                   </div>
-                   <div class="grid sm:grid-cols-2  gap-8">
-                      {{#foreach posts}}
-                      {{> cards/card-post}}
-                      {{/foreach}}
-                   </div>
-                </div>
-                {{/get}}
             </div>
          </div>
          <div class="lg:col-span-4">
@@ -65,7 +52,7 @@
       contentSelector: '.gh-content',
       headingSelector: 'h2, h3, h4, h5',
       // For headings inside relative or absolute positioned containers within content.
-      ignoreSelector: '.text-xl, .js-no-anchor, .gh-post-upgrade-cta-content',
+      ignoreSelector: '.text-2xl, .text-xl, .js-no-anchor, .gh-post-upgrade-cta-content',
       headingsOffset: 100,
       scrollSmoothOffset: -100,
    });
