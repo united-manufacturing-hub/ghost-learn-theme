@@ -17,31 +17,9 @@
          </div>
       </div>
       <div class="course-content">
-         <a href="{{url}}">
-         {{#foreach tags visibility="internal" limit="1"}}
-         {{#get "posts" filter="tag:{{slug}}+tag:hash-lesson" include="tags,authors"}}
-         <span class="lesoon-count mb-4 text-base leading-relaxed text-blue-800 inline-block">{{plural posts.length empty='No Lessons' singular='% Lesson' plural='% Lessons'}}</span>
-         {{/get}}
-         {{/foreach}}
-         </a>
          <h4 class="course-name font-serif text-xl text-gray-800 hover:text-blue-800 font-bold mb-6 duration-300">
             <a href="{{url}}">{{title}}</a>
          </h4>
-         {{#primary_author}}
-         <div class="author flex items-center">
-            {{#if profile_image}}
-            <img class="w-10 h-10 rounded-full object-cover" src="{{img_url profile_image}}" alt="{{name}}">
-            {{/if}}
-            <div class="course-content ml-2">
-               <h6 class="author-name font-serif text-base text-gray-800 hover:text-blue-800 font-bold duration-300">
-                  <a href="{{url}}">{{name}}</a>
-               </h6>
-               {{#if location}}
-               <p class="author-location text-sm text-gray-400 font-normal opacity-60">{{location}}</p>
-               {{/if}}
-            </div>
-         </div>
-         {{/primary_author}}
       </div>
    </div>
 </div>
