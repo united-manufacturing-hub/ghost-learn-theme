@@ -134,6 +134,48 @@
    </div>
 </div>
 {{/match}}
+{{#match course_style "micro-course"}}
+<div class="hero-area relative pt-20 xl:pt-28 ">
+   <div class="container mx-auto">
+      <div class="hero-box-3 relative grid gap-8 grid-cols-1 lg:grid-cols-12 items-center text-left">
+         <div class="lg:col-span-7 pr-10">
+            <div
+               class=" hero-content flex flex-wrap content-center relative top-0 bottom-0 left-0 max-w-[860px] z-10">
+               {{#foreach tags limit="2"}}
+               <a href="{{url}}"
+                  class="mr-2 inline-block px-6 py-2 text-sm font-medium border border-blue-200 rounded-full hover:text-blue-800 group duration-300 mb-4">{{name}}</a>
+               {{/foreach}}
+               <h1 class="font-serif !leading-tight text-4xl lg:text-5xl text-gray-800 font-bold  mb-6">{{title}}
+               </h1>
+               {{#if custom_excerpt}}
+               <p class="text-xl text-gray-400 font-normal mb-6">{{custom_excerpt}}</p>
+               {{/if}}
+               {{#primary_author}}
+               <div class="author flex items-center">
+                  <img class="w-10 h-10 rounded-full object-cover" src="{{img_url profile_image}}" alt="{{name}}">
+                  <div class="course-content ml-2">
+                     <h6 class="font-serif text-base text-gray-800 hover:text-blue-800 font-bold duration-300">
+                        <a href="{{url}}">{{name}}</a>
+                     </h6>
+                     {{#if location}}
+                     <p class="text-sm text-gray-400 font-normal opacity-60">{{location}}</p>
+                     {{/if}}
+                  </div>
+               </div>
+               {{/primary_author}}
+            </div>
+         </div>
+          {{#if feature_image}}
+         <div class="lg:col-span-5">
+            <div class="feature-image relative" data-aos="fade" data-aos-delay="100">
+               <img class="w-full rounded-xl" src="{{img_url feature_image}}" alt="{{title}}">
+            </div>
+         </div>
+         {{/if}}
+      </div>
+   </div>
+</div>
+{{/match}}
 {{#match lesson_style "one"}}
 <div class="hero-area relative pt-20 xl:pt-28 ">
    <div class="container mx-auto">
