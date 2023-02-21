@@ -1,2 +1,20 @@
 {{> related-lesson}}
 {{> related-posts}}
+
+<!-- For micro courses show other micro courses -->
+{{#has tag="#course"}}
+{{#get "posts" limit="2" filter="tags:[{{post.tags}}]+id:-{{post.id}}" order="title asc" include="tags,authors" as |related|}}
+{{#if related}}
+<div class="related-lesson">
+   <div class="section-title max-w-lg mb-8">
+      <h2 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-6">{{t "Related Articles"}}</h2>
+   </div>
+   <div class="grid sm:grid-cols-2  gap-8">
+      {{#foreach related}}
+      {{> cards/card-post}}
+      {{/foreach}}
+   </div>
+</div>
+{{/if}}
+{{/get}}
+{{/has}}
