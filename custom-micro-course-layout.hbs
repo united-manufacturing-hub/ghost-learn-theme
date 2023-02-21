@@ -26,7 +26,7 @@
                {{!-- {{> page-navigation}} --}}
                 <!-- For micro courses show other micro courses -->
                 TEST
-                {{#get "posts" limit="2" filter="tags:[{{post.tags}}]+id:-{{post.id}}" order="title asc" include="tags,authors" as |related|}}
+                {{#get "posts" limit="2" filter="id:-{{post.id}}+tag:{{primary_tag.slug}}" order="title asc" include="tags,authors" as |related|}}
                 {{#if related}}
                 <div class="related-lesson">
                    <div class="section-title max-w-lg mb-8">
