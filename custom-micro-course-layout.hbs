@@ -10,7 +10,7 @@
             <div class="gh-content gh-canvas pb-12">
                {{content}}
                {{!-- Code for the Enroll Button Fixing --}}
-               {{#foreach tags visibility="internal" limit="1"}}
+               {{#foreach tags visibility="external" limit="1"}}
                {{#get "posts" include ="tags,authors" limit="2" filter="id:-{{id}}+tag:{{slug}}+tag:hash-course"}}
                {{#if posts}}
                 <div class="related-lesson">
