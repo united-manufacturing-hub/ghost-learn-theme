@@ -25,8 +25,7 @@
             <div class="gh-canvas">
                {{!-- {{> page-navigation}} --}}
                 <!-- For micro courses show other micro courses -->
-                {{#get "posts" limit="2" filter="id:-{{post.id}}" order="title asc" include="tags,authors" as |related|}}
-                {{#if related}}
+                {{#get "posts" limit="2" filter="id:-{{post.id}}" order="title asc" include="tags,authors"}}
                 <div class="related-lesson">
                    <div class="section-title max-w-lg mb-8">
                       <h2 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-6">{{t "Related Articles"}}</h2>
@@ -37,7 +36,6 @@
                       {{/foreach}}
                    </div>
                 </div>
-                {{/if}}
                 {{/get}}
             </div>
          </div>
