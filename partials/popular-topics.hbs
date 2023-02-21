@@ -1,0 +1,86 @@
+{{#match style "one"}}
+<div class="popular-topics-area  pt-20 xl:pt-28">
+   <div class="container mx-auto">
+      <div class="text-center">
+         <a class="popular-topics animate-bounce inline-flex items-center justify-center w-20 h-20 border border-blue-100 hover:bg-blue-100 duration-300 rounded-full"
+            href="#popular-topics">
+            <svg class="popular-topics-icon" width="30" height="32" viewBox="0 0 30 32" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+               <path d="M15 31V1M15 31L1.875 17.875M15 31L28.125 17.875" stroke="{{@custom.body_text_color}}" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+         </a>
+      </div>
+   </div>
+</div>
+{{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
+{{#if tags}}
+<section class="topics-area pt-20 xl:pt-28" id="popular-topics">
+   <div class="container mx-auto">
+      <div class="section-title text-center max-w-xl mx-auto mb-6 lg:mb-16">
+         <h4 class="font-serif text-3xl lg:text-5xl text-gray-800 font-bold mb-6">{{t "Course Topics"}}</h4>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+         {{#foreach tags }}
+         <div class="topic-item tag-{{slug}} topic-{{@number}}" data-aos="fade-up " data-aos-delay="0">
+            <div
+               class="topics-box-1 rounded-lg hover:shadow-lg hover:-translate-y-1 group text-center p-8 duration-300">
+               <div class="topics-icon flex justify-center h-16 mx-auto mb-6"><img
+                  src="{{#if feature_image}} {{img_url feature_image}} {{else}} {{asset "images/prev.png"}}
+                  {{/if}}" alt="{{name}}">
+               </div>
+               <div class="topics-content">
+                  <h4 class="font-serif text-xl text-gray-800 hover:text-blue-800 font-bold mb-2 duration-300">
+                     <a href="{{url}}">{{name}}</a>
+                  </h4>
+                  <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural count.posts empty='No
+                     Courses' singular='% Course' plural='% Courses'}}
+                  </p>
+               </div>
+            </div>
+         </div>
+         {{/foreach}}
+      </div>
+      <div class="mt-14 text-center">
+         <a href="/topics"
+            class="inline-block px-8 py-4 text-base font-medium text-blue-800 border border-blue-200 hover:bg-blue-50 rounded-full hover:text-blue-800 group duration-300">{{t "View All Topics"}}</a>
+      </div>
+   </div>
+</section>
+{{/if}}
+{{/get}}
+{{/match}}
+{{#match style "two"}}
+{{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
+{{#if tags}}
+<section class="topics-area py-20 xl:py-28">
+   <div class="container mx-auto">
+      <div class="section-title text-center max-w-xl mx-auto mb-6 lg:mb-16">
+         <h4 class="font-serif text-4xl lg:text-5xl text-gray-800 font-bold mb-6">{{t "Course Topics"}}</h4>
+         <p class="text-lg text-gray-400 font-normal">Explore the most popular course topics here</p>
+      </div>
+      <div class="popular-topics-slider">
+         {{#foreach tags}}
+         <div
+            class="topics-box-1 shadow rounded-lg hover:shadow-lg hover:-translate-y-1 group text-center p-8 duration-300 topic-{{@number}}">
+            <div class="topics-icon flex justify-center h-16 mx-auto mb-6">
+               <img src="{{#if feature_image}} {{img_url feature_image}} {{else}} {{asset "images/prev.png"}} {{/if}}"
+               alt="{{name}}">
+            </div>
+            <div class="topics-content">
+               <h4 class="font-serif text-2xl text-gray-800 hover:text-blue-800 font-bold mb-2 duration-300">
+                  <a href="{{url}}">{{name}}</a>
+               </h4>
+               <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural count.posts empty='No
+                  Courses' singular='% Course' plural='% Courses'}}
+               </p>
+            </div>
+         </div>
+         {{/foreach}}
+      </div>
+   </div>
+</section>
+{{/if}}
+{{/get}}
+{{/match}}
+{{> filter-topics}}

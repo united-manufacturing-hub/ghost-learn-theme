@@ -1,0 +1,15 @@
+{{!< default}}
+{{#post}}
+{{#if feature_image}}
+{{> hero-section page_style="two"}}
+{{else}}
+{{> hero-section page_style="one"}}
+{{/if}}
+{{/post}} 
+{{#post}}
+<section class="single-area pb-20">
+   <div class="gh-content gh-canvas  max-w-4xl mx-auto">
+      {{content}}
+   </div>
+</section>
+{{/post}}

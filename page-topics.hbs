@@ -1,0 +1,35 @@
+{{!< default}}
+{{> hero-page-title }}
+{{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
+{{#if tags}}
+<section class="topics-area py-20">
+   <div class="container mx-auto">
+      <div class="topics-grid grid lg:grid-cols-12 gap-8">
+         {{#foreach tags}}
+         <div class="topic-{{@number}}">
+            <div
+               class="topics-box-2 rounded-lg shadow hover:shadow-lg hover:-translate-y-1 group text-left p-8 duration-300 h-full">
+               {{#if feature_image}}
+               <div class="topics-icon flex justify-start h-16 mx-auto mb-6"><img src="{{feature_image}}" alt="{{name}}">
+               </div>
+               {{/if}}
+               <div class="topics-content">
+                  <h4 class="font-serif text-2xl text-gray-800 hover:text-blue-800 font-bold mb-2 duration-300">
+                     <a href="{{url}}">{{name}}</a>
+                  </h4>
+                  <p class="text-base leading-relaxed text-blue-800 font-medium mb-4">{{plural count.posts empty='No
+                     Courses' singular='% Course' plural='% Courses'}}
+                  </p>
+                  {{#if description}}
+                  <p class="text-base leading-relaxed text-gray-400 font-normal">{{description}}</p>
+                  {{/if}}
+               </div>
+            </div>
+         </div>
+         {{/foreach}}
+      </div>
+   </div>
+</section>
+{{/if}}
+{{/get}}
+{{> filter-topics}}

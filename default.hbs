@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>{{meta_title}}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="shortcut icon" href="assets/images/favicon.ico" type="images/x-icon" />
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      {{!-- gulp:css --}}
+      <link rel="stylesheet" href="{{asset 'css/app.min.css'}}">
+      {{!-- endgulp  --}}
+      {{> ghost-dynamic-style}}
+      <script src="{{asset 'js/jquery.min.js'}}"></script>
+      {{^is "post, page"}}
+      <script>
+         var pagination_next_page_number = '{{pagination.next }}',
+             pagination_available_pages_number = '{{pagination.pages }}';
+      </script>
+      {{/is}}
+      {{ghost_head}}
+   </head>
+   <body class="bg-white {{body_class}} overflow-x-hidden">
+      <div class="main-area ">
+         {{> header}}
+         {{{body}}}
+         {{> footer}}
+      </div>
+      {{!-- gulp:js  --}}
+      <script src="{{asset 'js/build.min.js'}}"></script>
+      {{!-- endgulp  --}}
+      {{#is "author"}}
+      {{> chartJs}}
+      {{/is}}
+      {{^is "post, page"}}
+      <script src="{{asset 'js/infinite-scroll.pkgd.min.js'}}"></script>
+      <script>
+         function learn_loadmore(parentEl, loadmoreItem, loadmoreBtn){
+             let pagination_next_url = $('link[rel=next]').attr('href');
+         
+           {{^is "tag, author"}}
+               pagination_next_url = `{{@site.url}}/blog/page/${pagination_next_page_number}`;
+           {{/is}}
+           
+             const $load_posts_button = $(loadmoreBtn);
+         
+               console.log(pagination_next_url);
+         
+           $load_posts_button.on('click', function (e) {
+               e.preventDefault();
+         
+               console.log('ok');
+         
+               var request_next_link = pagination_next_url.split(/page/)[0] + 'page/' + pagination_next_page_number + '/';
+         
+               $.ajax({
+                   url: request_next_link,
+                   beforeSend: function () {
+                       $load_posts_button.text('Loading');
+                       $load_posts_button.addClass('button--loading');
+                   }
+               }).done(function (data) {
+                   var posts = $(loadmoreItem, data);
+         
+                   $load_posts_button.text('Load More');
+                   $load_posts_button.removeClass('button--loading');
+         
+                 console.log(posts);
+                   $(parentEl).append(posts);
+         
+                   pagination_next_page_number++;
+         
+                   if (pagination_next_page_number > pagination_available_pages_number) {
+                       $load_posts_button.addClass('c-btn-disabled').attr('disabled', true);
+                       $('.c-btn-disabled').remove();
+                   }
+               });
+         
+         
+           });
+         }
+         
+         learn_loadmore('.posts', '.postitem', '.js-load-posts');
+         learn_loadmore('.infinite-scroll', '.append-item', '.js-load-posts');
+      </script>
+      {{/is}}
+      {{ghost_foot}}
+   </body>
+</html>

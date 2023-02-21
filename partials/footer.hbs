@@ -1,0 +1,71 @@
+<footer class="footer-area relative  pt-20 xl:pt-28">
+   <div class="footer-bg bg-blue-50 absolute bottom-0 left-0 right-0 w-full block h-[calc(100%-11.4rem)]">
+   </div>
+   <div class="container mx-auto">
+      <div class=" bg-white shadow p-8 md:p-14 rounded-lg mb-8 lg:mb-12 relative z-10">
+         <div class="newsletter-cta grid gap-6 grid-cols-1 lg:grid-cols-12 items-center border-b border-blue-100 pb-8 lg:pb-12 mb-8 lg:mb-16">
+            <div class="lg:col-span-6 xl:col-span-8">
+               <h3 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-3"> {{t "Subscribe to Learn"}} 📫</h3>
+               <p class="text-base leading-relaxed text-gray-400 font-normal">               {{t "Subscribe to receive latest courses, news, and updates."}}</p>
+            </div>
+            <div class="lg:col-span-6 xl:col-span-4">
+               {{> newsletter}}
+            </div>
+         </div>
+         <div class="footer-list">
+            {{navigation type="secondary"}}
+         </div>
+      </div>
+      <div
+         class="md:flex flex-row-reverse justify-between gap-6 items-center text-center lg:text-left pb-14 relative z-10">
+         <ul class="inline-flex items-center text-center lg:text-right gap-2">
+            {{#if facebook_url }}
+            <li><a class="group bg-blue-50 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center duration-300  border "
+               href="{{facebook_url}}">
+               {{> icons/facebook}}
+               </a>
+            </li>
+            {{/if}}
+            {{#if twitter_url }}
+            <li><a class="group bg-blue-50 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center duration-300  border "
+               href="{{twitter_url}}">
+               {{> icons/twitter}}
+               </a>
+            </li>
+            {{/if}}
+            <li><a class="group bg-blue-50 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center duration-300  border "
+               href="https://instagram.com">
+               {{> icons/instagram}}
+               </a>
+            </li>
+            <li><a class="group bg-blue-50 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center duration-300  border "
+               href="https://linkedin.com">
+               {{> icons/linkedin}}
+               </a>
+            </li>
+         </ul>
+         {{#if @custom.footer_note}}
+         <div class="my-2">
+            <p class="text-sm leading-relaxed text-gray-400 font-normal">
+               &copy; 
+               <span id="spanYear">
+                  <script> document.getElementById('spanYear').innerHTML = new Date('Y'); </script>
+               </span>
+               {{@custom.footer_note}} | {{t "Developed by"}} <a class="text-gray-800 hover:text-blue-800 duration-300" rel="nofollow"
+                  href="https://www.themeix.com/">{{t "Themeix"}}</a> <br>  {{t "Published with"}} <a class="text-gray-800 hover:text-blue-800 duration-300" rel="nofollow" href="https://ghost.org?via=themeix75">Ghost</a>
+            </p>
+         </div>
+         {{/if}}
+      </div>
+      {{#if @custom.back_to_scroll}}
+      <a class="scroll-top-button fixed left-4 bottom-4 z-10 inline-flex items-center justify-center w-12 h-12 border-2 border-blue-200 bg-white hover:bg-blue-50 duration-300 rounded-full"
+         href="#">
+         <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+               d="M6 19.3326C5.82321 19.3326 5.65367 19.2624 5.52866 19.1374C5.40366 19.0124 5.33343 18.8428 5.33343 18.666L5.33343 2.94425L1.13935 7.13966C1.01418 7.26483 0.844425 7.33514 0.667415 7.33514C0.490406 7.33514 0.320646 7.26483 0.195481 7.13966C0.0703166 7.0145 4.17049e-09 6.84474 0 6.66773C-4.17049e-09 6.49072 0.0703166 6.32096 0.195481 6.1958L5.52807 0.863209C5.58998 0.801134 5.66354 0.751884 5.74452 0.718281C5.82551 0.684675 5.91232 0.667379 6 0.667379C6.08768 0.667379 6.17449 0.684675 6.25548 0.718281C6.33646 0.751884 6.41002 0.801134 6.47193 0.863209L11.8045 6.1958C11.9297 6.32096 12 6.49072 12 6.66773C12 6.84474 11.9297 7.0145 11.8045 7.13966C11.6794 7.26483 11.5096 7.33514 11.3326 7.33514C11.1556 7.33514 10.9858 7.26483 10.8607 7.13966L6.66657 2.94425L6.66657 18.666C6.66657 18.8428 6.59635 19.0124 6.47134 19.1374C6.34633 19.2624 6.17679 19.3326 6 19.3326Z"
+               fill="{{@custom.body_text_color}}" />
+         </svg>
+      </a>
+      {{/if}}
+   </div>
+</footer>

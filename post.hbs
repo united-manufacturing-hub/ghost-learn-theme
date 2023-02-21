@@ -1,0 +1,28 @@
+{{!< default}}
+{{#post}}
+{{#if feature_image}}
+{{> hero-section lesson_style="three"}}
+{{else}}
+{{> hero-section post_style="one"}}
+{{/if}}
+{{/post}} 
+<section class="single-area pb-20">
+   {{#post}}
+   <div class="gh-content gh-canvas pb-20 xl:pb-20 max-w-4xl mx-auto">
+       
+ {{content}}
+          
+     
+   </div>
+   <div class="gh-canvas">
+      {{#if comments}}
+      {{comments}}
+      {{/if}}
+   </div>
+   {{/post}}
+   <div class="gh-canvas">
+      {{> social-share style="one"}}
+      {{!-- {{> page-navigation}} --}}
+      {{> related-content}}
+   </div>
+</section>

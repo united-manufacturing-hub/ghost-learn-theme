@@ -1,0 +1,25 @@
+<div class="lesson-box-2 border hover:border-white rounded-lg hover:shadow-lg duration-300 p-6 flex
+   justify-between items-center group">
+   <div class="lesson-logo flex-none {{#if access}}bg-blue-50{{else}}bg-red-50 group-hover:bg-blue-50{{/if}} p-2
+      rounded-full w-16 h-16 inline-flex items-center justify-center mr-4 duration-300">
+      {{^if access}}
+      {{> icons/lock}}
+      {{else}} 
+      {{> icons/unlock}} 
+      {{/if}}
+   </div>
+   <div class="lesson-content flex-auto">
+      <h4 class="font-serif text-2xl text-gray-800 {{#if access}}hover:text-blue-800{{/if}} font-bold
+         mb-2 duration-300">
+         <p>{{title}}</p>
+      </h4>
+      <p class="text-base leading-relaxed text-gray-400 font-normal">{{date published_at format="MMMM DD,
+         YYYY"}}
+      </p>
+   </div>
+   {{#if feature_image}}
+   <div class="feature-image relative hidden lg:block">
+      <img class="h-24 w-36 rounded-xl object-cover" src="{{feature_image}}" alt="{{title}}">
+   </div>
+   {{/if}}
+</div>

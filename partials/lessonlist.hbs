@@ -1,0 +1,15 @@
+<div class="lesson-box mb-2  {{#if access}}hover:shadow-lg{{/if}} duration-300 py-4 px-4 flex justify-between items-center group {{post_class}}"
+   id="id-{{id}}">
+   <div class="lesson-logo flex-none {{#if access}}bg-blue-50{{else}}bg-red-50{{/if}} p-3 rounded-full w-10 h-10 inline-flex items-center justify-center mr-4 mt-1">
+      {{#if access}}
+      {{> icons/unlock}}
+      {{else}}
+      {{> icons/lock}}
+      {{/if}}
+   </div>
+   <div class="lesson-content flex-auto">
+      <h4 class="font-serif text-lg text-gray-800 {{#if access}}hover:text-blue-800{{/if}} font-medium mb-0 duration-300">
+         {{title}}
+      </h4>
+   </div>
+</div>

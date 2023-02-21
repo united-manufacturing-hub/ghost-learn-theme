@@ -1,0 +1,65 @@
+{{!< default}}
+{{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
+{{#foreach tags}}
+<div class="hero-area relative pt-20 xl:pt-28 topic-{{@number}}">
+   <div class="container mx-auto">
+      <div class="page-title-box">
+         <div class="section-title max-w-xl ">
+            <p class="mb-2 text-sm px-3 py-1  bg-blue-800 text-white rounded inline-block ">{{plural count.posts empty='No Courses
+               available' singular='Total % Course available' plural='Total % Courses available'}} 
+            </p>
+         </div>
+         <h4 class="font-serif text-4xl lg:text-5xl text-gray-800 font-bold ">{{name}}</h4>
+      </div>
+   </div>
+</div>
+<section class="course-area pt-20 xl:pt-10 topic-{{@number}}">
+   <div class="container mx-auto">
+      {{#get "posts" include="tags,authors"  filter="tag:{{slug}}+tag:hash-course"}}
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+         {{#foreach posts}}
+         {{> cards/card-course}}
+         {{/foreach}}
+      </div>
+      {{/get}}
+      <div class="mt-14 text-center">
+         <a href="/topic/{{slug}}/"
+            class="load-more-btn inline-block px-8 py-4 text-base font-medium text-blue-800 border border-blue-200 hover:bg-blue-50 rounded-full hover:text-blue-800 group duration-300">{{t
+         "View All"}}</a>
+      </div>
+   </div>
+</section>
+{{/foreach}}
+{{/get}}
+{{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
+{{#if tags}}
+<section class="topics-area py-20 xl:py-28">
+   <div class="container mx-auto">
+      <div class="section-title text-center max-w-xl mx-auto mb-6 lg:mb-16">
+         <h4 class="font-serif text-4xl lg:text-5xl text-gray-800 font-bold mb-6">{{t "Popular Topics"}}</h4>
+         <p class="text-lg text-gray-400 font-normal">Explore the most popular course topics here</p>
+      </div>
+      <div class="popular-topics-slider">
+         {{#foreach tags}}
+         <div
+            class="topics-box-1 shadow rounded-lg hover:shadow-lg hover:-translate-y-1 group text-center p-8 duration-300 topic-{{@number}}">
+            <div class="topics-icon flex justify-center h-16 mx-auto mb-6">
+               <img src="{{#if feature_image}} {{img_url feature_image}} {{else}} {{asset "images/prev.png"}} {{/if}}"
+               alt="{{name}}">
+            </div>
+            <div class="topics-content">
+               <h4 class="font-serif text-2xl text-gray-800 hover:text-blue-800 font-bold mb-2 duration-300">
+                  <a href="{{url}}">{{name}}</a>
+               </h4>
+               <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural count.posts empty='No
+                  Courses' singular='% Course' plural='% Courses'}}
+               </p>
+            </div>
+         </div>
+         {{/foreach}}
+      </div>
+   </div>
+</section>
+{{/if}}
+{{/get}}
+{{> filter-topics}}

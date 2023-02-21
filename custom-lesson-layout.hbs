@@ -1,0 +1,64 @@
+{{!< default}} 
+{{#post}}
+{{> hero-section lesson_style="two"}}
+<script > let tiersID = []; </script>
+<section class="single-area pb-20">
+   <div class="container mx-auto">
+      <div class="grid lg:grid-cols-12 gap-8">
+         <div class="lg:col-span-4">
+            {{#foreach tags visibility="internal" limit="1"}}
+            {{#get "posts" include ="tags,authors,tiers" order="published_at asc" filter="tag:{{slug}}+tag:hash-course"}}
+            {{#if posts}}
+            {{#foreach posts}}
+            {{#foreach tiers}}
+            <script > tiersID.push("#id-{{id}}"); </script>
+            {{/foreach}}
+            {{/foreach}}
+            {{/if}}
+            {{/get}}
+            {{/foreach}}
+            <div class="sidebar rounded-lg sticky top-32 shadow hover:shadow-lg duration-300">
+               <div class="left-lesson-list">
+                  {{#has tag="#lesson"}}
+                  {{#foreach tags visibility="internal" limit="1"}}
+                  {{#get "posts" limit="all" include ="tags,authors,tiers" filter="tag:{{slug}}+tag:hash-lesson" order="published_at asc"
+                  include="tags,authors"}}
+                  <div class="related-lesson">
+                     <div class="lesson-list sticky top-0">
+                        <ol class="lesson-list ">
+                           {{#foreach posts}}
+                           {{#if access}}
+                           <a href="{{url}}">
+                           {{> lessonlist}}
+                           </a> 
+                           {{else}}
+                           <a class="modal-open" href="#">
+                           {{> lessonlist}}
+                           </a> 
+                           {{/if}}
+                           {{/foreach}}
+                        </ol>
+                     </div>
+                  </div>
+                  {{/get}}
+                  {{/foreach}}
+                  {{/has}}
+                  <script> $("#id-{{id}}").addClass('active'); </script>
+               </div>
+            </div>
+         </div>
+         <div class="lg:col-span-8">
+            <div class="gh-content pb-12">
+               {{content}}
+            </div>
+            <div class="w-full">
+               {{#if comments}}
+               {{comments}}
+               {{/if}}
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{{/post}}
+{{> membership-modal}}

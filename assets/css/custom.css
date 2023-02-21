@@ -1,0 +1,562 @@
+/*
+=====================
+CSS Table of Conttent 
+=====================
+01. normalize   
+02. slick slider
+03. button pulse  
+04. dropdown menu
+05. magnific effect
+06. anchor link hover
+07. sticky header 
+*/ 
+/* 01. normalize */
+* {
+    scroll-behavior: smooth !important;
+}
+:root { 
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Manrope', sans-serif;  
+    --gray-400: #45484c;   
+    --gray-800: #202832; 
+  }   
+/* 02. slick slider */
+.slick-slide {
+    margin: 2px 16px;
+}
+
+.slick-list {
+    margin: 0 -16px;
+}
+
+.slick-dots {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -60px;
+}
+
+.slick-dots .slick-active button {
+    background-color: #1363DF;
+}
+
+.slick-dots li button {
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+    background-color: #eeeeee;
+    color: transparent;
+}
+
+/* ripple effect */
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 82, 212, 0.05), 0 0 0 20px rgba(0, 82, 212, 0.05), 0 0 0 40px rgba(0, 82, 212, 0.05), 0 0 0 60px rgba(0, 82, 212, 0.05);
+    }
+
+    100% {
+        box-shadow: 0 0 0 20px rgba(0, 82, 212, 0.05), 0 0 0 40px rgba(0, 82, 212, 0.05), 0 0 0 60px rgba(0, 82, 212, 0.05), 0 0 0 80px rgba(0, 128, 0, 0);
+    }
+}
+
+.video-popup {
+    animation: ripple 0.6s linear infinite;
+}
+
+/* 04. dropdown menu */
+@media all and (min-width: 1024px) {
+    .navbar-nav .dropdown .dropdown-toggle {
+        position: relative;
+        padding-right: 25px !important;
+    }
+
+    .navbar-nav .dropdown .dropdown-toggle .sub-toggle {
+        display: none;
+    }
+
+    .navbar-nav .dropdown .dropdown-toggle:after {
+        content: "";
+        background-image: url(../images/down-arrow.webp);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 15px;
+        height: 15px;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 5px;
+        margin: auto;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu {
+        min-width: 180px;
+        position: absolute;
+        top: 100%;
+        -webkit-transform: translateY(5%);
+        transform: translateY(5%);
+        transition: transform 150ms ease-in;
+        z-index: 222;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu li {
+        position: relative;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu li a {
+        display: block;
+        white-space: nowrap;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu .dropdown-toggle::after {
+        transform: rotate(-90deg);
+    }
+
+    .navbar-nav .dropdown .dropdown-menu.dropdown-submenu {
+        left: 100%;
+        top: 0px !important;
+    }
+
+    .navbar-nav>li.dropdown:hover>.dropdown-menu,
+    .navbar-nav .dropdown-menu>li:hover>.dropdown-submenu {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .mobile-menu {
+        position: absolute;
+        top: 100%;
+        z-index: 50;
+        width: 100%;
+        padding: 15px 15px 15px 5px;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .mobile-toggle {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        right: 0;
+        z-index: 5;
+    }
+
+    .mobile-toggle span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        position: absolute;
+        top: 10px;
+        left: 9px;
+        border-radius: 3px;
+        transition: 300ms ease;
+    }
+
+    .mobile-toggle span:nth-child(2) {
+        top: 19px;
+    }
+
+    .mobile-toggle span:nth-child(3) {
+        top: 28px;
+    }
+
+    .mobile-toggle.open span:nth-child(1) {
+        top: 20px;
+        transform: rotate(-45deg);
+    }
+
+    .mobile-toggle.open span:nth-child(2) {
+        top: 20px;
+        opacity: 0;
+    }
+
+    .mobile-toggle.open span:nth-child(3) {
+        top: 20px;
+        transform: rotate(45deg);
+    }
+
+    .navbar-nav .dropdown .dropdown-toggle {
+        position: relative;
+        display: block;
+    }
+
+    .navbar-nav .dropdown .dropdown-toggle .sub-toggle {
+        display: block;
+        height: 28px;
+        text-align: center;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu {
+        display: none;
+    }
+
+    .navbar-nav .dropdown .dropdown-menu li {
+        padding-left: 10px;
+    }
+}
+
+/**  
+ * 05. magnific effect 
+ */
+.my-mfp-slide-main {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: auto;
+    overflow-x: hidden;
+}
+
+.my-mfp-slide-main .main-area {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    left: 0;
+    min-height: 100%;
+}
+
+.my-mfp-slide-bottom {
+    min-height: 100%;
+    background-color: #ffffff;
+    opacity: 1;
+}
+
+.my-mfp-slide-bottom .mfp-container {
+    padding: 0;
+}
+
+.my-mfp-slide-bottom .zoom-anim-dialog {
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    transform: translateY(-20px);
+}
+
+.my-mfp-slide-bottom.mfp-ready .zoom-anim-dialog {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.my-mfp-slide-bottom.mfp-removing .zoom-anim-dialog {
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    transform: translateY(-20px);
+}
+
+/**
+ * Simple fade transition,
+ */
+.mfp-fade.mfp-bg {
+    opacity: 0;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+}
+
+.mfp-fade.mfp-bg.mfp-ready {
+    opacity: 0.8;
+}
+
+.mfp-fade.mfp-bg.mfp-removing {
+    opacity: 0;
+}
+
+.mfp-fade.mfp-wrap .mfp-content {
+    opacity: 0;
+    -webkit-transition: all 0.15s ease-out;
+    -moz-transition: all 0.15s ease-out;
+    transition: all 0.15s ease-out;
+}
+
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+    opacity: 1;
+}
+
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+    opacity: 0;
+}
+
+/**
+ * 06. anchor link hover
+ */
+.wavy-hover {
+    position: relative;
+}  
+
+.wavy-hover:hover:after {
+    box-shadow: 0 0 0 2px #006aff, 0 0 0 4px #f1f6fd;
+}
+
+.wavy-hover:after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    left: -15px;
+    top: 50%;
+    transform: translate(0, -50%);
+    box-shadow: 0 0 0 0 #f1f6fd, 0 0 0 0 #006aff;
+    transition: 0.4s ease-in-out;
+}
+
+/** 
+ * 07. tab slider
+ */
+
+.tab-slider--nav {
+    width: 100%;
+    float: left;
+}
+
+.tab-slider--tabs {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.tab-slider--trigger {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    padding: 16px;
+    display: inline-block;
+    transition: color 300ms ease-in-out;
+    user-select: none;
+}
+
+.tab-slider--trigger::before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #ffffff;
+    display: block;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.tab-slider--trigger.active {
+    color: #0052D4;
+}
+
+.tab-slider--trigger.active::before {
+    background-color: #0052D4;
+}
+
+/** 
+ * 07. missonary grid
+ */
+
+@media (min-width: 1024px) {
+    .topics-grid>div {
+        grid-column: span 4/span 4;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .topics-grid>div:nth-child(5n+4),
+    .topics-grid>div:nth-child(5n) {
+        grid-column: span 6/span 6;
+    }
+
+}
+
+a.subscribe-form {
+    display: inline-block;
+    max-width: 650px;
+    width: 100%;
+}
+
+a.subscribe-form span {
+    text-align: left;
+    color: #b3acc8;
+}
+
+/**
+ * 07. sticky header
+ */
+
+
+.header-area {
+    transition: 0.3s;
+}
+
+.header-sticky {
+    position: fixed !important;
+    width: 100%;
+    top: -100px;
+    display: block;
+    position: fixed;
+    z-index: 999;
+    transition: all .5s ease;
+    --tw-shadow: 0px 4px 90px rgba(163, 171, 185, 0.24);
+    --tw-shadow-colored: 0px 4px 90px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+/* fix video layout/ */
+
+.video-container,
+.videos-box,
+.kg-embed-card {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.video-container object,
+.video-container embed,
+.video-container iframe,
+
+.kg-embed-card object,
+.kg-embed-card embed,
+.kg-embed-card iframe,
+.videos-box object,
+.videos-box embed,
+.videos-box iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.learn-cover-img {
+    min-height: 520px;
+}
+
+span.statistics-logo svg {
+    width: 42px;
+}
+
+.social-share svg {
+    color: white;
+}
+
+.gh-post-upgrade-cta small {
+    color: #fff;
+}
+
+.style-two a {
+    background: #f1f6fd;
+}
+
+.style-two a svg {
+    background: #f1f6fd;
+    color: rgb(90 90 91 / var(--tw-text-opacity));
+}
+
+.style-two a:hover svg {
+    color: var(--ghost-accent-color) !important;
+}
+
+a.lesson-link {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.lesson-list-item.active a.lesson-link {
+    font-weight: bold;
+    color: var(--ghost-accent-color);
+}
+
+.sidebar.rounded-lg.sticky.top-32.p-8.shadow.hover\:shadow-lg.duration-300 {
+    max-height: 650px;
+    overflow: auto;
+}   
+
+.lesson-box.active h4 {
+    color: var(--ghost-accent-color);
+}
+
+.lesson-box.active {
+    --tw-shadow: 0px 4px 90px rgba(163, 171, 185, 0.24);
+    --tw-shadow-colored: 0px 4px 90px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+
+
+.learn-membership {
+    position: relative;
+    z-index: 999;
+}
+
+.modal-active {
+    overflow: hidden;
+}
+
+.membership-card {
+    max-width: 355px;
+}
+
+
+/* width */
+.sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 15px 15px 0;
+}
+
+/* Handle */
+.sidebar::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 0 15px 15px 0;
+}
+
+/* Handle on hover */
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #ddd;
+}
+
+.course-page-content .gh-post-upgrade-cta {
+    margin-top: 40px !important;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    color: var(--ghost-accent-color);
+}
+.gh-post-upgrade-cta a.gh-btn:hover {
+    color: var(--ghost-accent-color);
+}
+
+.overFlow{
+    overflow: hidden;
+}
+
+/* Duration */
+
+.duration-300 {
+    transition-duration: .3s!important;
+    -webkit-transition-duration: .3s!important;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+    -webkit-mask-image:-webkit-radial-gradient(white,black)
+}
+
+
+
+.lesson-box-2 {
+    margin-bottom: 24px!important;
+}
+

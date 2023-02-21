@@ -1,0 +1,55 @@
+{{!< default}} 
+{{#post}}
+{{#if feature_image}}
+{{> hero-section lesson_style="three"}}
+{{else}}
+{{> hero-section lesson_style="one"}}
+{{/if}}
+<section class="single-area pb-20">
+   <div class="container mx-auto">
+      <div class="grid lg:grid-cols-12 gap-8">
+         <div class="lg:col-span-8">
+            <div class="gh-content  pb-12">
+               {{content}}
+            </div>
+            <div class="gh-canvas">
+               {{!-- {{> page-navigation}} --}}
+               {{> related-content}}
+            </div>
+         </div>
+         <div class="lg:col-span-4">
+            <div class="sidebar rounded-lg sticky top-32 p-8 shadow hover:shadow-lg duration-300">
+               <span class="inline-block font-serif text-xl text-gray-800 font-bold mb-8">{{t "Table of Content"}}</span>
+               <div class="mb-8 gh-toc">
+               </div>
+               {{> social-share style="one"}}
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{{/post}}
+<link rel="stylesheet" href="{{asset 'css/tocbot.css'}}" />
+<script src="{{asset 'js/tocbot.min.js'}}"></script>
+<script>
+   tocbot.init({
+   
+      tocSelector: '.gh-toc',
+      contentSelector: '.gh-content',   
+      headingSelector: 'h3, h4, h5',
+      // For headings inside relative or absolute positioned containers within content.
+      ignoreSelector: '.js-no-anchor',
+   
+      headingsOffset: 100,
+      scrollSmoothOffset: -100,
+   });
+   tocbot.refresh();
+   
+   $("li.toc-list-item a").on('click', function(e){
+      e.preventDefault();
+   });
+   
+   if($('li.toc-list-item').length <= 0){
+      $('.sidebar.sticky').remove();
+   }
+</script>

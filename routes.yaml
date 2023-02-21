@@ -1,0 +1,35 @@
+routes:
+
+collections:
+
+  /lesson/:
+    permalink: /lesson/{slug}/
+    template: course
+    filter: "tag:hash-lesson"
+
+  /courses/:
+    permalink: /course/{slug}/
+    template: courses
+    filter: "tag:hash-course"
+
+  /blog/:
+    permalink: /blog/{slug}/
+    template: blog
+    filter: "tag:hash-blog"
+    
+  /:
+    permalink: /course/{slug}/
+    template: index
+
+  /home-v2/:
+    permalink: /course/{slug}/
+    template: index-v2
+
+  /home-v3/:
+    permalink: /course/{slug}/
+    template: index-v3
+
+
+taxonomies:
+  tag: /topic/{slug}/
+  author: /instructor/{slug}/
