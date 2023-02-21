@@ -11,7 +11,7 @@
                {{content}}
                {{!-- Code for the Enroll Button Fixing --}}
                {{#foreach tags visibility="public" limit="1"}}
-               {{#get "posts" include ="tags,authors" limit="2" filter="id:-{{id}}+tag:{{slug}}+tag:hash-course"}}
+               {{#get "posts" include ="tags,authors" limit="4" filter="id:-{{id}}+tag:{{slug}}+tag:hash-course"}}
                {{#if posts}}
                 <div class="related-lesson">
                    <div class="section-title max-w-lg mb-8">
