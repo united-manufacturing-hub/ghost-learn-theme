@@ -110,14 +110,6 @@
 		},
 		"card_assets": true,
 		"custom": {
-			"featured_course_tag_1_heading": {
-				"type": "text",
-				"default": "UI/UX Design"
-			},
-			"featured_course_tag_2_heading": {
-				"type": "text",
-				"default": "Web Development"
-			},
 			"contact_form_action_url": {
 				"type": "text",
 				"default": "https://submit-form.com/4HaTaFxz"
