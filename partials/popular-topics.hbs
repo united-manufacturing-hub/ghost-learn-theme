@@ -21,13 +21,13 @@
                   </h4>
 
                    {{#get "posts" filter="tag:[hash-course]+tag:{{slug}}" order="title asc" include="tags,authors"}}
-                   <p class="mb-2 text-base leading-relaxed text-blue-800 font-bold">{{plural posts.count empty='No Guides
+                   <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural posts.count empty='No Guides
                       available' singular='% Guide' plural='% Guides'}} 
                    </p>
                    {{/get}}
 
                    {{#get "posts" filter="tag:[hash-blog]+tag:{{slug}}" order="title asc" include="tags,authors"}}
-                   <p class="mb-2 text-base leading-relaxed text-blue-800 font-bold">{{plural posts.count empty='No Articles
+                   <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural posts.count empty='No Articles
                       available' singular='% Article' plural='% Articles'}} 
                    </p>
                    {{/get}}
