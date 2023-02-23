@@ -20,14 +20,13 @@
                      <a href="{{url}}">{{name}}</a>
                   </h4>
 
-                   {{#get "posts" filter="tag:[hash-course]+tag:{{slug}}" order="title asc" include="tags,authors"}}
-                   <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural posts.count empty='No Guides
+                   {{#get "posts" filter="tag:[hash-course]+tag:{{slug}}" order="title asc" include="tags,authors" as |topicposts|}}
+                   <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural topicposts.length empty='No Guides
                       available' singular='% Guide' plural='% Guides'}} 
                    </p>
                    {{/get}}
                    {{#get "posts" filter="tag:[hash-blog]+tag:{{slug}}" order="title asc" include="tags" as |topicposts|}}
-                   {{topicposts.length}}
-                   <p class="text-base leading-relaxed text-gray-400 font-normal">bli blub{{plural topicposts.length empty='No Articles
+                   <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural topicposts.length empty='No Articles
                       available' singular='% Article' plural='% Articles'}} 
                    </p>
                    {{/get}}
