@@ -25,7 +25,7 @@
                       available' singular='% Guide' plural='% Guides'}} 
                    </p>
                    {{/get}}
-                   {{#get "posts" order="title asc" include="tags,authors" as |topicposts|}}
+                   {{#get "posts" filter="tag:[hash-course]+tag:{{slug}} order="title asc" include="tags,authors" as |topicposts|}}
                    {{topicposts}}
                    <p class="text-base leading-relaxed text-gray-400 font-normal">bli blub{{plural topicposts.count empty='No Articles
                       available' singular='% Article' plural='% Articles'}} 
