@@ -20,21 +20,17 @@
                      <a href="{{url}}">{{name}}</a>
                   </h4>
 
-                   {{#foreach tags visibility="internal" limit="1"}}
                    {{#get "posts" filter="tag:[hash-course]+tag:{{slug}}" order="title asc" include="tags,authors"}}
                    <p class="mb-2 text-base leading-relaxed text-blue-800 font-bold">{{plural posts.count empty='No Guides
                       available' singular='% Guide' plural='% Guides'}} 
                    </p>
                    {{/get}}
-                   {{/foreach}}
 
-                   {{#foreach tags visibility="internal" limit="1"}}
                    {{#get "posts" filter="tag:[hash-blog]+tag:{{slug}}" order="title asc" include="tags,authors"}}
                    <p class="mb-2 text-base leading-relaxed text-blue-800 font-bold">{{plural posts.count empty='No Articles
                       available' singular='% Article' plural='% Articles'}} 
                    </p>
                    {{/get}}
-                   {{/foreach}}
                   <!-- <p class="text-base leading-relaxed text-gray-400 font-normal">{{plural count.posts empty='No -->
                   <!--    Courses' singular='% Guide or Article' plural='% Guides or Articles'}} -->
                   <!-- </p> -->
