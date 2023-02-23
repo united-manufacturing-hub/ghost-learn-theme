@@ -1,4 +1,4 @@
-{{#get "posts" limit="2" filter="tags:[{{post.tags}}]+id:-{{post.id}}" order="featured desc, published_at desc" include="tags,authors" as |related|}}
+{{#get "posts" limit="4" filter="tags:[{{post.tags}}]+id:-{{post.id}}" order="featured desc, published_at desc" include="tags,authors" as |related|}}
 {{#if related}}
 <div class="related-lesson">
    <div class="section-title max-w-lg mb-8">
