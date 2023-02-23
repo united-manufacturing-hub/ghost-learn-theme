@@ -1,18 +1,4 @@
 {{#match style "one"}}
-<div class="popular-topics-area  pt-20 xl:pt-28">
-   <div class="container mx-auto">
-      <div class="text-center">
-         <a class="popular-topics animate-bounce inline-flex items-center justify-center w-20 h-20 border border-blue-100 hover:bg-blue-100 duration-300 rounded-full"
-            href="#popular-topics">
-            <svg class="popular-topics-icon" width="30" height="32" viewBox="0 0 30 32" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-               <path d="M15 31V1M15 31L1.875 17.875M15 31L28.125 17.875" stroke="{{@custom.body_text_color}}" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-         </a>
-      </div>
-   </div>
-</div>
 {{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
 {{#if tags}}
 <section class="topics-area pt-20 xl:pt-28" id="popular-topics">
