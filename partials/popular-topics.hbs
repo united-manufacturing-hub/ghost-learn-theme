@@ -61,7 +61,7 @@
          <div
             class="topics-box-1 shadow rounded-lg hover:shadow-lg hover:-translate-y-1 group text-center p-8 duration-300 topic-{{@number}}">
             <div class="topics-icon flex justify-center h-16 mx-auto mb-6">
-               <img src="{{#if feature_image}} {{img_url feature_image}} {{else}} {{asset "images/prev.png"}} {{/if}}"
+               <img src="{{#if feature_image}} /cdn-cgi/image/height=64,quality=80/{{img_url feature_image}} {{else}} {{asset "images/prev.png"}} {{/if}}"
                alt="{{name}}">
             </div>
             <div class="topics-content">
