@@ -560,3 +560,10 @@ a.lesson-link {
     margin-bottom: 24px!important;
 }
 
+
+/* Fix for toggle */
+.kg-toggle-card-icon {
+    background: 0 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+}
