@@ -560,6 +560,10 @@ a.lesson-link {
     margin-bottom: 24px!important;
 }
 
+.kg-width-full {
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 /* Fix for toggle */
 .kg-toggle-card-icon {
@@ -568,25 +572,35 @@ a.lesson-link {
     padding: 0 !important;
 }
 
+/* Fix for callout "Want to discuss with an expert" */
+.kg-header-card-header {
+    padding-bottom: 0.5rem !important;
+}
+
 /* Fix for Signup Card  */
 .kg-signup-card h2.kg-signup-card-heading {
-    font-size: 2.25em !important;
+    font-size: 4em !important;
+    padding-bottom: 0.5rem !important;
 }
 
 .kg-signup-card.kg-width-wide h2.kg-signup-card-heading {
-    font-size: 2.25em !important;
+    font-size: 4em !important;
+    padding-bottom: 0.5rem !important;
 }
 
 .kg-signup-card.kg-width-full h2.kg-signup-card-heading {
-    font-size: 2.25em !important;
+    font-size: 4em !important;
+    padding-bottom: 0.5rem !important;
 }
 
 .kg-signup-card.kg-width-full.kg-layout-split h2.kg-signup-card-heading {
-    font-size: 2.25em !important;
+    font-size: 4em !important;
+    padding-bottom: 0.5rem !important;
 }
 
 .kg-signup-card.kg-width-full.kg-layout-split.kg-content-wide h2.kg-signup-card-heading {
-    font-size: 2.25em !important;
+    font-size: 4em !important;
+    padding-bottom: 0.5rem !important;
 }
 
 /* Subheading */
