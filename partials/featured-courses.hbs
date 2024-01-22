@@ -33,3 +33,20 @@
 </section>
 {{/if}}
 {{/get}}
+{{#get "posts" include="tags,authors" filter="tag:it-ot-architecture+tag:hash-blog" order="published_at desc" limit="6"}}
+{{#if posts}}
+<section class="course-area pt-20 xl:pt-28">
+   <div class="container mx-auto">
+      <div class="section-title max-w-xl mb-6 lg:mb-16">
+         <h4 class="font-serif text-4xl lg:text-5xl text-gray-800 font-bold mb-6">About IT / OT architecture</h4>
+         <p class="text-lg text-gray-400 font-normal">Various articles that we wrote over time about our experiences in IT / OT convergence.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+         {{#foreach posts}}
+         {{> cards/card-course}}
+         {{/foreach}}
+      </div>
+   </div>
+</section>
+{{/if}}
+{{/get}}
