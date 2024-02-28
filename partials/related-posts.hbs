@@ -1,11 +1,11 @@
-{{#get "posts" limit="4" filter="tags:[{{post.tags}}]+id:-{{post.id}}" order="featured desc, published_at desc" include="tags,authors" as |related|}}
+{{#get "posts" include="tags,authors" filter="tag:it-ot-architecture+tag:hash-blog" order="published_at desc" limit="9" as |not_really_related|}}
 {{#if related}}
 <div class="related-lesson">
    <div class="section-title max-w-lg mb-8">
       <h2 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-6">{{t "Related Articles"}}</h2>
    </div>
    <div class="grid sm:grid-cols-2  gap-8">
-      {{#foreach related}}
+      {{#foreach not_really_related}}
       {{> cards/card-post}}
       {{/foreach}}
    </div>
