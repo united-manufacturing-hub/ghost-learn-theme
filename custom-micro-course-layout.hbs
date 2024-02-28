@@ -15,7 +15,7 @@
                       <h2 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-6">{{t "Related Articles"}}</h2>
                    </div>
                    {{#foreach tags visibility="public" limit="2"}}
-                   {{#get "posts" include ="tags,authors" limit="2" filter="id:-{{id}}+tag:{{slug}}+tag:hash-course" order="featured desc, published_at desc"}}
+                   {{#get "posts" include="tags,authors" filter="tag:it-ot-architecture+tag:hash-blog" order="published_at desc" limit="9"}}
                    {{#if posts}}
                        <div class="grid sm:grid-cols-2  gap-8">
                           {{#foreach posts}}
