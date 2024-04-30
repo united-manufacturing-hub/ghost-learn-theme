@@ -18,9 +18,9 @@
     posthog.onFeatureFlags(function() {
         var linkText = "About UMH"
         if (posthog.getFeatureFlag('learn-cta-get-started-get-demo') === 'control') {
-            linkText = "Start free or get a demo" 
-        } else {
             linkText = "About UMH" 
+        } else {
+            linkText = "Start free or get a demo" 
         }
         
         document.getElementById('cta-header').textContent = linkText;
