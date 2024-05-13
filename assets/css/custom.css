@@ -628,3 +628,33 @@ a.lesson-link {
 .kg-signup-card.kg-width-full.kg-layout-split h3.kg-signup-card-subheading {
     font-size: 1.2em !important;
 }
+
+/* Adjusting CTA buttons to the design on main webite */
+
+.button.is-nav {
+    border-radius: .5rem;
+    text-decoration: none;
+}
+.button {
+    border: 1px solid var(--border-color--border-secondary);
+    background-color: var(--link-color--link-alternate);
+    color: var(--link-color--link-primary);
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .6rem;
+    padding: .7rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color .2s, border-color .2s, background-color .2s;
+}
+.w-button {
+    color: #fff;
+    line-height: inherit;
+    cursor: pointer;
+    background-color: var(--umh-blue);
+    border: 0;
+    border-radius: 0;
+    padding: 9px 15px;
+    text-decoration: none;
+    display: inline-block;
+}
