@@ -32,7 +32,7 @@
         if (posthog.isFeatureEnabled('learn-header-from-website')) {
             var headerLogo = document.getElementById('header-logo');
             headerLogo.innerHTML = `<a class="pr-8 inline-block" href="https://www.umh.app">
-                                        <img class="max-h-16" src="/assets/images/UMH_Logo%20Icon_Black.png" alt="UMH Logo">
+                                        <img class="" src="/assets/images/UMH_Logo%20Icon_Black.png" alt="UMH Logo" style="max-height: 48px;max-width: 36px;">
                                     </a>`;
             
             var headerNavigation = document.getElementById('navigation-not-secondary');
@@ -74,7 +74,7 @@
                 Community </a>
             </li>
             <li class="menu-item-has-children" style="opacity: 1;">
-                <a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="/">
+                <a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="/" style="min-width=9rem;">
                     Life at UMH  
                 </a>
                 <ul class="ghost-submenu">
