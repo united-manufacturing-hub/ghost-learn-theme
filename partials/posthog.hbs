@@ -32,12 +32,12 @@
         if (posthog.isFeatureEnabled('learn-header-from-website')) {
             var headerLogo = document.getElementById('header-logo');
             headerLogo.innerHTML = `<a class="pr-8 inline-block" href="https://www.umh.app">
-                                        <img class="max-h-16" src="/assets/images/UMH_Logo_Icon_W.png" alt="UMH Logo">
+                                        <img class="max-h-16" src="/assets/images/UMH_Logo%20Icon_W.png" alt="UMH Logo">
                                     </a>`;
             
             var headerNavigation = document.getElementById('navigation-not-secondary');
             headerNavigation.innerHTML = `
-            <li><a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="https://www.umh.app/product">
+            <li style="opacity: 1;">><a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="https://www.umh.app/product">
                 Product </a>
             </li>
             <li class="menu-item-has-children" style="opacity: 1;">
@@ -67,10 +67,10 @@
                 <path d="M1 0.866211L6.52874 6.86621L12.0575 0.866211" stroke="#202832" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </li>
 
-            <li><a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="https://www.umh.app/pricing">
+            <li style="opacity: 1;">><a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="https://www.umh.app/pricing">
                 Pricing </a>
             </li>
-            <li><a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="/">
+            <li style="opacity: 1;">><a class="text-base text-gray-800 hover:text-blue-800 font-medium block   px-5  py-2  lg:py-2" href="/">
                 Community </a>
             </li>
             <li class="menu-item-has-children" style="opacity: 1;">
