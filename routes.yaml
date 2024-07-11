@@ -29,6 +29,10 @@ collections:
     permalink: /course/{slug}/
     template: index-v3
 
+  /home-new-layout/:
+    permalink: /course/{slug}/
+    template: index-new-layout
+
 
 taxonomies:
   tag: /topic/{slug}/
