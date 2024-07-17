@@ -2494,14 +2494,14 @@
   z-index: 0;
   color: var(--text-color--text-alternate);
   background-color: #fff;
-  background-image: url('../images/umh-bg-pattern-30-percent-opacity.svg');
+  /* background-image: url('../images/umh-bg-pattern-30-percent-opacity.svg'); */
   background-position: 50% 0;
   background-size: auto;
   position: relative;
 }
 
 .section_footer.automotive {
-  background-image: url('../images/umh-bg-pattern-30-percent-opacity.svg');
+  /* background-image: url('../images/umh-bg-pattern-30-percent-opacity.svg'); */
   background-size: auto;
 }
 
