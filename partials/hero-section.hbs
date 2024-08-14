@@ -7,8 +7,12 @@
             {{#if @site.description}}
             <h4 class="text-xl text-gray-400 font-normal mb-12">{{@site.description}}</h4>
             {{/if}}
-            <a href="https://www.umh.app/?utm_source=learn&utm_medium=community&utm_campaign=learn.umh.app&utm_content=main-cta"
+
+            <button class="gh-search hero-btn-2 inline-block px-10 py-4 font-medium text-lg text-white  bg-umh-blue hover:bg-blue-800 rounded-full hover:text-white group duration-300 mr-4 mb-2 inline-flex items-center justify-center gap-2" data-ghost-search>{{> "icons/search"}} Search</button>
+
+            {{!-- <a href="https://www.umh.app/?utm_source=learn&utm_medium=community&utm_campaign=learn.umh.app&utm_content=main-cta"
                class="hero-btn-2 inline-block px-10 py-4 font-medium text-lg text-white  bg-umh-blue hover:bg-blue-800 rounded-full hover:text-white group duration-300 mr-4 mb-2 " id="cta-main-cta">{{t "About UMH"}}</a>
+             --}}
             <a href="/community/?cta=lrn3"
                class="hero-btn-1 inline-block px-10 py-4 font-medium text-lg text-gray-400  bg-blue-50 hover:bg-blue-800 rounded-full hover:text-white group duration-300 mr-4 mb-2 ">{{t "Join Our Community"}}</a>
          </div>
