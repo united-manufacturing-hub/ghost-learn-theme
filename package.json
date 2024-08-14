@@ -78,7 +78,7 @@
 		"gulp-zip": "5.1.0",
 		"jshint": "2.13.5",
 		"jshint-stylish": "2.2.1",
-		"postcss": "8.4.17",
+		"postcss": "8.4.31",
 		"postcss-import": "15.0.0",
 		"run-sequence": "2.2.1",
 		"sass": "1.55.0"
