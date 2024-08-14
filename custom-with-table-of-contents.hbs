@@ -1,0 +1,27 @@
+{{!< default}}
+
+{{#post}}
+  {{!-- Hero section --}}
+  {{> post-hero type="wide-split"}}
+  
+  <section class="max-w-wide mx-auto flex flex-col gap-6 lg:flex-row" data-post-content>
+    {{!-- TOC --}}
+    {{> toc}}
+
+    {{!-- Content --}}
+    <article class="ghost-content prose md:prose-lg prose-theme lg:flex-1" data-no-overflow{{#unless access}} data-preview{{/unless}}>
+      {{content}}
+    </article>
+  </section>
+
+  {{!-- Share --}}
+  {{> social-share
+    item_class="border border-brd bg-bgr leading-tight p-1.5 flex-1 flex gap-1.5 items-center justify-center rounded-theme hover:bg-bgr-tone"
+  }}
+
+  {{!-- Comments --}}
+  {{> comments}}
+{{/post}}
+
+{{!-- Related posts --}}
+{{> related-posts}}

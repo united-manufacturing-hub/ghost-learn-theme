@@ -1,0 +1,58 @@
+<article class="{{post_class}} {{card_class}} text-sm text-typ-tone" data-post-card>
+  <a href="{{url}}" class="relative py-4 md:py-6 border-b border-brd grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-2 items-center sm:items-start before:content-[''] before:absolute before:-z-[1] before:h-full before:w-[calc(100%_+_32px)] before:-inset-x-4 before:rounded-theme-xxs hover:before:bg-bgr-tone">
+
+    <div class="flex items-center flex-wrap gap-3 col-span-3 lg:col-span-5">
+      {{!-- Title --}}
+      <h3 class="text-typ md:text-base font-medium {{title_class}}" data-post-card-title>
+        {{title}}
+      </h3>
+      
+      {{!-- Featured --}}
+      {{#if featured}}<span data-post-card-featured>{{> icon name="star" icon_class="size-4 text-yellow-400 fill-yellow-400 [&>svg]:fill-inherit"}}<span class="sr-only">{{t "Featured"}}</span></span>{{/if}}
+
+      {{!-- Visibility --}}
+      {{#if @custom.post_card_access}}
+        {{#match visibility "!=" "public"}}
+          <span class="text-[0.8rem] font-medium flex items-center gap-0.5 capitalize border border-brd bg-bgr-tone rounded-theme px-2 pr-2.5 py-0.5" data-post-card-visibility>
+            {{#if access}}
+              {{> icon name="lock-open" icon_class="-mt-0.5 size-4 text-green-500"}}
+            {{else}}
+              {{> icon name="lock" icon_class="-mt-0.5 size-4 text-rose-500"}}
+            {{/if}}
+            {{#has visibility="tiers"}}{{tiers}}{{else}}{{visibility}}{{/has}}
+          </span>
+        {{/match}}
+      {{/if}}
+    </div>
+
+    {{!-- Tag --}}
+    <div class="flex gap-2">
+      {{#foreach tags limit="1"}}
+        <span class="">{{name}}</span>
+      {{/foreach}}
+    </div>
+
+    {{!-- Date --}}
+    <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time> 
+
+    {{!-- Author and date --}}
+    <ul class="flex items-center justify-end gap-2 font-medium" data-post-card-authors>
+      {{#foreach authors limit="3"}}
+        <li class="flex gap-1 items-center">
+          {{#if profile_image}}
+            {{> image
+              image_type="author"
+              image_alt=" "
+              image_class="size-6 object-cover rounded-full"
+              image_url=profile_image
+              size_xxs=true
+              size_xs=true
+              sizes="24px"
+            }}
+          {{/if}}
+          <span class="sr-only">{{name}}</span>
+        </li>
+      {{/foreach}}
+    </ul>
+  </a>
+</article>

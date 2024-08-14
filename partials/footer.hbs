@@ -1,47 +1,85 @@
-<footer class="footer-area relative  pt-20 xl:pt-28">
-   <div class="footer-bg bg-blue-50 absolute bottom-0 left-0 right-0 w-full block h-[calc(100%-11.4rem)]">
-   </div>
-   <div class="container mx-auto">
-      <div
-         class="md:flex flex-row-reverse justify-between gap-6 items-center text-center lg:text-left pb-14 relative z-10">
-         <ul class="inline-flex items-center text-center lg:text-right gap-2">
-            <li><a class="group bg-blue-50 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center duration-300  border "
-               href="https://discord.gg/F9mqkZnm9d">
-               {{> icons/discord}}
-               </a>
-            </li>
-            <li><a class="group bg-blue-50 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center duration-300  border "
-               href="https://www.linkedin.com/company/united-manufacturing-hub">
-               {{> icons/linkedin}}
-               </a>
-            </li>
-            <li><a class="group bg-blue-50 hover:bg-white w-10 h-10 rounded-full flex items-center justify-center duration-300  border "
-               href="https://twitter.com/umh_app">
-               {{> icons/twitter}}
-               </a>
-            </li>
-         </ul>
-         {{#if @custom.footer_note}}
-         <div class="my-2">
-            <p class="text-sm leading-relaxed text-gray-400 font-normal">
-               &copy; 
-               <span id="spanYear">
-                  <script> document.getElementById('spanYear').innerHTML = new Date('Y'); </script>
-               </span>
-               {{@custom.footer_note}}
-            </p>
-         </div>
-         {{/if}}
+<footer class="px-4 sm:px-6 bg-bgr mt-16{{#is "signin,signup"}} hidden{{/is}}" data-footer>
+  <div class="max-w-container mx-auto relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-fading">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 py-8 md:gap-8 md:py-12">
+      {{!-- Brand --}}
+      <div class="flex flex-col items-start gap-3 col-span-2 md:col-span-1 lg:col-span-2" data-footer-brand>
+        <a href="{{@site.url}}" data-brand>
+          {{> logo loading="lazy"}}
+        </a>
+
+        {{!-- Description --}}
+        <p class="text-typ-tone">{{@site.description}}</p>
+
+        {{!-- Social media --}}
+        {{> social-links 
+          data_value="footer"
+          nav_class="flex items-center gap-2 text-typ-tone text-base"
+          item_class="p-2 border border-brd bg-bgr rounded-theme hover:bg-bgr-tone hover:text-brand hover:border-brand"
+          icon_class="w-4 h-4 stroke-2"
+          text_class="sr-only"
+        }}
       </div>
-      {{#if @custom.back_to_scroll}}
-      <a class="scroll-top-button fixed left-4 bottom-4 z-10 inline-flex items-center justify-center w-12 h-12 border-2 border-blue-200 bg-white hover:bg-blue-50 duration-300 rounded-full"
-         href="#">
-         <svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-               d="M6 19.3326C5.82321 19.3326 5.65367 19.2624 5.52866 19.1374C5.40366 19.0124 5.33343 18.8428 5.33343 18.666L5.33343 2.94425L1.13935 7.13966C1.01418 7.26483 0.844425 7.33514 0.667415 7.33514C0.490406 7.33514 0.320646 7.26483 0.195481 7.13966C0.0703166 7.0145 4.17049e-09 6.84474 0 6.66773C-4.17049e-09 6.49072 0.0703166 6.32096 0.195481 6.1958L5.52807 0.863209C5.58998 0.801134 5.66354 0.751884 5.74452 0.718281C5.82551 0.684675 5.91232 0.667379 6 0.667379C6.08768 0.667379 6.17449 0.684675 6.25548 0.718281C6.33646 0.751884 6.41002 0.801134 6.47193 0.863209L11.8045 6.1958C11.9297 6.32096 12 6.49072 12 6.66773C12 6.84474 11.9297 7.0145 11.8045 7.13966C11.6794 7.26483 11.5096 7.33514 11.3326 7.33514C11.1556 7.33514 10.9858 7.26483 10.8607 7.13966L6.66657 2.94425L6.66657 18.666C6.66657 18.8428 6.59635 19.0124 6.47134 19.1374C6.34633 19.2624 6.17679 19.3326 6 19.3326Z"
-               fill="{{@custom.body_text_color}}" />
-         </svg>
-      </a>
+
+      <span class="hidden lg:block"></span>
+
+      {{!-- Primary Navigation --}}
+      <div class="flex flex-col gap-2 mt-2" data-footer-nav="primary">
+        <span class="font-semibold">{{@site.title}}</span>
+        <nav class="">
+          {{navigation 
+            ul_class="flex flex-col items-start gap-2 text-typ-tone text-sm"
+            li_class="flex flex-col relative"
+            a_class="flex hover:text-brand"
+          }}
+        </nav>
+      </div>
+
+      {{!-- Secondary Navigation --}}
+      {{#if @site.secondary_navigation}}
+        <div class="flex flex-col gap-2 mt-2" data-footer-nav="secondary">
+          <span class="font-semibold">{{t "Legal"}}</span>
+          <nav class="">
+            {{navigation 
+              type="secondary"
+              ul_class="flex flex-col items-start gap-2 text-typ-tone text-sm"
+              li_class="flex flex-col relative"
+              a_class="flex hover:text-brand"
+            }}
+          </nav>
+        </div>
       {{/if}}
-   </div>
+
+      {{!-- Categories --}}
+      {{#if @custom.featured_tags}}
+        {{#get "tags" filter="slug:[{{@custom.featured_tags}}]" include="count.posts" limit="all"}}
+          {{#if tags}}
+            <div class="flex flex-col gap-2 mt-2" data-footer-nav="categories">
+              <span class="font-semibold">{{t "Categories"}}</span>
+              <nav class="">
+                <ul class="flex flex-col items-start gap-2 text-typ-tone text-sm">
+                  {{#foreach tags}}
+                    <li class="flex flex-col relative">
+                      <a href="{{url}}" class="flex hover:text-brand">{{name}}</a>
+                    </li>
+                  {{/foreach}}
+                </ul>
+              </nav>
+            </div>
+          {{/if}}
+        {{/get}}
+      {{/if}}
+    </div>
+
+
+    {{!-- Copy & Color scheme --}}
+    <div class="py-4 md:py-6 flex flex-wrap items-center gap-2 relative before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-fading">
+      <div class="text-sm text-typ-tone">
+        <span data-footer-date>&copy;{{date format="YYYY"}}&nbsp;{{#link href=@site.url class="hover:underline"}}{{@site.title}}{{/link}}.</span>
+        <span data-footer-ghost>{{t "Published with"}}&nbsp;{{#link href="https://ghost.org" class="hover:underline"}}Ghost{{/link}}</span>
+        <span data-footer-theme>&&nbsp;{{#link href="https://brightthemes.com/themes/flair" class="hover:underline"}}Flair{{/link}}.</span>
+      </div>
+
+      {{> toggle-color-scheme}}
+    </div>
+  </div>
 </footer>

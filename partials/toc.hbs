@@ -1,0 +1,18 @@
+{{!-- Toc sidebar --}}
+<aside class="px-4 md:px-0 w-full max-w-content mx-auto lg:max-w-xs" data-toc x-init="$nextTick(() => { renderTOC('h2,h3,h4') })"> 
+  <div class="sticky border-b border-brd pb-2 mb-8 lg:border-none{{#if @custom.sticky_header}} top-[92px]{{else}} top-4{{/if}}"
+    x-data="{ tocOpen: false }"
+  > 
+    {{!-- Mobile toggle --}}
+    <button class="w-full text-xs lg:text-[0.8rem] uppercase text-typ-tone font-semibold border border-brd px-6 py-2 mb-2 flex items-center justify-center gap-2 rounded-theme hover:bg-bgr-tone lg:border-none lg:px-2.5 lg:py-1 lg:cursor-text lg:hover:bg-bgr lg:justify-start" 
+      :data-toc-toggle="tocOpen ? 'active' : 'inactive'" aria-label="{{t "Table of Contents"}}" @click="tocOpen = !tocOpen">
+      <span class="mt-[1px]">{{t "Table of Contents"}}</span>
+      {{> icon name="plus" icon_class="size-[14px] stroke-[2.5] hidden lg:invisible"}}
+      {{> icon name="minus" icon_class="size-[14px] stroke-[2.5] hidden lg:invisible"}}
+    </button>
+
+    {{!-- Toc items will be generated here --}}
+    <div data-toc-content class="text-typ-tone text-sm lg:text-[0.95rem] lg:block" :class="tocOpen ? 'block' : 'hidden'">
+    </div>
+  </div>
+</aside>

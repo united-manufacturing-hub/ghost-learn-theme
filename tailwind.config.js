@@ -1,126 +1,111 @@
 module.exports = {
-
-
-  mode: 'jit',
-  content: ['./.hbs', './**/.hbs', './**/**/*.hbs'],
-   corePlugins: { 
-    container: true 
-  }, 
-    plugins: [
-   
- 
-    function ({ addComponents }) {
-      addComponents({
-        '.container': {
-          maxWidth: '100%',
-          '@screen sm': {
-            maxWidth: '640px',
-          },
-          '@screen md': {
-            maxWidth: '768px',
-          },
-          '@screen lg': {
-            maxWidth: '1024px', 
-          },
-          '@screen xl': {
-            maxWidth: '1280px',
-          },
-          '@screen 2xl': {
-            maxWidth: '1320px',
-          },
-        }
-      })
-    } 
-  ],
+  content: ['./*.hbs', "./**/*.hbs"],
   theme: {
+    fontFamily: {
+      system: 'var(--font-system)',
+      headings: 'var(--font-headings)',
+      body: 'var(--font-body)',
+    },
     extend: {
-      container: { 
-        center: true,
-        padding: '1rem',
-       }, 
-      colors: {    
-        gray:{
-          800: '#202832',
-          600: '#99A1A6',
-          400: '#5A5A5B',
-          100: '#ACACAD',
+      colors: {
+        // brand: 'var(--ghost-accent-color)',
+        brand: ({ opacityVariable, opacityValue }) => {
+          if (opacityValue !== undefined) {
+            return `hsla(var(--color-brand-hsl) / ${opacityValue})`
+          }
+          if (opacityVariable !== undefined) {
+            return `hsla(var(--color-brand-hsl) / var(${opacityVariable}, 1))`
+          }
+          return `hsl(var(--color-brand-hsl))`
         },
-        blue:{
-          800: '#0052D4', 
-          200: '#6FB1FC',
-          100: '#C5D9F7', 
-          50: '#F1F6FD', 
-        }, 
-        red:{
-          800: '#FD4A00', 
-        }, 
-        violet:{
-          800: '#9747FF',   
-        }, 
-        rose:{
-          800: '#E43CB5', 
-        }, 
-        amber:{ 
-          100: '#FFFBDC', 
-          50: '#FFFEF2',  
-        }, 
-        facebook:{
-          100: '#3b5998'
-        },
-        twitter:{
-          100: '#00acee'
-        },
-        linkedin:{
-          100: '#0a66c2'
-        }
+        'brand-contrast': 'var(--color-brand-contrast)',
+        'accent': 'var(--color-accent)',
+        'transparent': 'transparent',
+        'current': 'currentColor',
+        'error': 'var(--color-error)',
+        'success': 'var(--color-success)',
+        'typ': 'var(--color-typography)',
+        'typ-tone': 'var(--color-typography-tone)',
+        'typ-content': 'var(--color-typography-content)',
+        'typ-reverse': 'var(--color-typography-reverse)',
+        'bgr': 'var(--color-background)',
+        'bgr-tone': 'var(--color-background-tone)',
+        'bgr-reverse': 'var(--color-background-reverse)',
+        'bgr-opac': 'var(--color-background-opac)',
+        'brd': 'var(--color-border)',
+        'opac': 'rgba(0,0,0,0.05)'
       },
-      fontFamily: {
-        sans: [
-          'var(--font-sans)',
-        ],
-        serif: [
-          'var(--font-serif)',  
-        ],
+      maxWidth: {
+        'container': 'var(--container-width)',
+        'content': 'var(--content-width)',
+        'content-wide': 'var(--content-width-wide)',
+        'wide': 'var(--wide-width)'
       },
-      fontWeight: {
-        light: 300,
-        normal: 400,
-        medium: 500,
-        semibold: 600,
-        bold: 700,
-        extrabold: 800,
-        'extra-bold': 800,
-        black: 900,
+      backgroundImage: {
+        'brand-gradient': `linear-gradient(to right, var(--color-brand), var(--color-brand-low) 20%, var(--color-brand-low) 80%, var(--color-brand))`,
+        'radial-gradient': `radial-gradient(35% 80% at 50% 25%,hsla(var(--color-brand-hsl)/0.15) 0%,rgba(0,0,0,0) 100%)`,
+        'fading': `linear-gradient(to right, transparent, var(--color-border), transparent)`
       },
-      placeholderColor: theme => theme('colors'),
-      placeholderColor: {
-        "gray-600":"#99A1A6",   
+      borderRadius: {
+        'theme': 'var(--radius)',
+        'theme-xxs': 'var(--radius-xxs)',
+        'theme-xs': 'var(--radius-xs)',
+        'theme-sm': 'var(--radius-sm)',
+        'theme-md': 'var(--radius-md)',
+        'theme-lg': 'var(--radius-lg)',
+        'theme-xl': 'var(--radius-xl)',
       },
       boxShadow: {
-        'DEFAULT': '0px 0px 0px 1px rgba(0, 0, 0, 0.1)', 
-        'lg': '0px 4px 90px rgba(163, 171, 185, 0.24)',   
+        'theme': 'var(--shadow)',
+        'btn': 'inset 0 0 0 1px rgba(255,255,255,0.2), 0 5px 5px 1px hsla(var(--color-brand-hsl) / 0.1)',
+        'btn-hover': 'inset 0 0 0 1px rgba(255,255,255,0.2), 0 5px 15px 1px hsla(var(--color-brand-hsl) / 0.25)'
       },
-      backgroundSize: {
-        'size-200': '200% 200%',
+      transitionProperty: {
+        'move': 'transform, opacity, visibility',
+        'width': 'width'
       },
-      backgroundPosition: {
-          'pos-0': '0% 0%',
-          'pos-100': '100% 100%',
-      },
-      keyframes: {
-        stretch: {
-          '0%': { transform: 'translateY(-10%)' },
-          '50%': { transform: 'translateY(-5%)' },
-          '100%': { transform: 'translateY(0%)' },  
+      typography: ({ theme }) => ({
+        theme: {
+          css: {
+            '--tw-prose-body': 'var(--color-typography-content)',
+            '--tw-prose-headings': 'var(--color-typography)',
+            '--tw-prose-lead': 'var(--color-typography-content)',
+            '--tw-prose-links': 'var(--ghost-accent-color)',
+            '--tw-prose-bold': 'var(--color-typography-content)',
+            '--tw-prose-counters': 'var(--color-typography-content)',
+            '--tw-prose-bullets': 'var(--color-typography-content)',
+            '--tw-prose-hr': 'var(--color-border)',
+            '--tw-prose-quotes': 'var(--color-typography-content)',
+            '--tw-prose-quote-borders': 'var(--ghost-accent-color)',
+            '--tw-prose-captions': 'var(--color-typography-content)',
+            '--tw-prose-code': 'var(--color-typography-content)',
+            '--tw-prose-pre-code': 'var(--color-typography-reverse)',
+            '--tw-prose-pre-bg': 'var(--color-typography)',
+            '--tw-prose-th-borders': 'var(--color-border)',
+            '--tw-prose-td-borders': 'var(--color-border)',
+            '--tw-prose-invert-body': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-headings': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-lead': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-links': 'var(--ghost-accent-color)',
+            '--tw-prose-invert-bold': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-counters': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-bullets': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-hr': 'var(--color-border-reverse)',
+            '--tw-prose-invert-quotes': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-quote-borders': 'var(--color-border-reverse)',
+            '--tw-prose-invert-captions': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-code': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-pre-code': 'var(--color-typography-content)',
+            '--tw-prose-invert-pre-bg': 'var(--color-typography-reverse)',
+            '--tw-prose-invert-th-borders': 'var(--color-border-reverse)',
+            '--tw-prose-invert-td-borders': 'var(--color-border-reverse)',
+          },
         },
-      },
-      animation: {
-        'spin-slow': 'spin 5s linear infinite',
-        'bounce-slow': 'ping 5s linear infinite', 
-        'stretch': 'stretch 5s ease-out 0s alternate infinite none running;', 
-      },
-    },
+      }),
+    }
   },
- 
-  // Other stuff
-};
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+  ],
+}

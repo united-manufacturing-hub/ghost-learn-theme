@@ -1,0 +1,83 @@
+<article class="{{post_class}} {{card_class}} relative text-typ-tone flex flex-col gap-4 md:flex-row lg:gap-8" data-post-card="{{#if featured}}featured{{/if}}">
+  
+  {{!-- Feature Image --}}
+  {{#if feature_image}}
+    <a href="{{url}}" class="block md:flex-[2]">
+      <figure class="rounded-theme-xxs border border-brd overflow-hidden">
+        {{> image
+          image_type="post"
+          image_class="aspect-[16/9] bg-bgr-tone object-cover w-full h-auto rounded-[inherit]"
+          image_url=feature_image
+          size_s=true
+          size_m=true
+          size_l=true
+          sizes="(max-width: 400px) 300px, (max-width: 720px) 600px, 900px"
+          loading=image_loading
+        }}
+      </figure>
+    </a>
+  {{/if}}
+
+  <div class="flex md:flex-1 flex-col gap-3">
+    {{!-- Tag & date --}}
+    <div class="flex flex-wrap items-center gap-2 md:gap-3 text-sm md:text-base" data-post-card-info>
+      {{!-- Tag --}}
+      {{#foreach tags limit="1"}}
+        <a href="{{url}}" class="hover:text-brand">{{name}}</a>
+      {{/foreach}}
+
+      <span class="">·</span>
+      
+      {{!-- Date --}}
+      <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>    
+      
+      {{!-- Visibility --}}
+      {{#if @custom.post_card_access}}
+        {{#match visibility "!=" "public"}}
+          <span class="flex-1"></span>
+          <span class="text-[0.8rem] font-medium flex items-center gap-1 capitalize border border-brd bg-bgr-tone rounded-theme px-2.5 pr-3 py-0.5" data-post-card-visibility>
+            {{#if access}}
+              {{> icon name="lock-open" icon_class="size-4 text-green-500"}}
+            {{else}}
+              {{> icon name="lock" icon_class="size-4 text-rose-500"}}
+            {{/if}}
+            {{#has visibility="tiers"}}{{tiers}}{{else}}{{visibility}}{{/has}}
+          </span>
+        {{/match}}
+      {{/if}}
+    </div>
+
+    {{!-- Title --}}
+    <h3 class="text-typ text-xl md:text-2xl lg:text-3xl font-semibold hover:text-brand" data-post-card-title>
+      <a href="{{url}}" class="">{{title}}</a>
+    </h3>
+
+    {{!-- Excerpt --}}
+    {{#if excerpt}}
+      <p class="font-light" data-post-card-excerpt>{{excerpt words="20"}}</p>
+    {{/if}}
+
+    {{!-- Author and date --}}
+    <ul class="flex gap-2.5 text-sm font-medium md:text-[0.925rem]" data-post-card-authors>
+      {{#foreach authors limit="3"}}
+        <li>
+          <a href="{{url}}" class="flex gap-1.5 items-center hover:text-brand">
+            {{#if profile_image}}
+              {{> image
+                image_type="author"
+                image_alt=" "
+                image_class="size-6 md:size-7 object-cover rounded-full"
+                image_url=profile_image
+                size_xxs=true
+                size_xs=true
+                sizes="28px"
+                loading="eager"
+              }}
+            {{/if}}
+            <span>{{name}}</span>
+          </a>
+        </li>
+      {{/foreach}}
+    </ul>
+  </div>
+</article>

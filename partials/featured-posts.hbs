@@ -1,0 +1,90 @@
+{{#get "posts" filter="featured:true" include="tags,authors" limit="5"}}
+  {{#if posts}}
+    <section class="px-4 sm:px-6 mb-24" data-featured-posts="{{posts.length}}">
+      <div class="max-w-container mx-auto">
+        {{!-- Section title --}}
+        <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 md:mb-8 pb-2.5">{{t "Featured"}}</h2>
+
+        {{!-- 1 featured post --}}
+        {{#match posts.length 1}}
+          <div class="" data-featured-feed>
+            {{#foreach posts}}
+              {{> post-card-main }}
+            {{/foreach}}
+          </div>
+        {{/match}}
+
+        {{!-- 2 featured posts --}}
+        {{#match posts.length 2}}
+          <div class="grid gap-10 sm:grid-cols-2" data-featured-feed>
+            {{#foreach posts}}
+              {{> post-card title_class="md:text-2xl"
+                image_loading="eager"
+              }}
+            {{/foreach}}
+          </div>
+        {{/match}}
+
+        {{!-- 3 featured posts --}}
+        {{#match posts.length 3}}
+          <div class="grid gap-10 md:grid-cols-3" data-featured-feed>
+            <div class="md:col-span-2">
+              {{#foreach posts to="1"}}
+                {{> post-card title_class="md:text-2xl lg:text-3xl"
+                  image_loading="eager"
+                }}
+              {{/foreach}}
+            </div>
+            <div class="flex flex-col gap-10" data-featured-side>
+              {{#foreach posts from="2"}}
+                {{> post-card
+                  image_loading="eager"
+                }}
+              {{/foreach}}
+            </div>
+          </div>
+        {{/match}}
+
+        {{!-- 4 featured posts --}}
+        {{#match posts.length 4}}
+          <div class="grid gap-10 sm:grid-cols-3" data-featured-feed>
+            {{#foreach posts to="1"}}
+              {{> post-card-main card_class="sm:col-span-3" }}
+            {{/foreach}}
+            {{#foreach posts from="2"}}
+              {{> post-card 
+                image_loading="eager"
+              }}
+            {{/foreach}}
+          </div>
+        {{/match}}
+
+        {{!-- 5+ featured posts --}}
+        {{#match posts.length ">=" 5}}
+          <div class="grid gap-10 sm:grid-cols-3" data-featured-feed>
+            <div class="sm:col-span-3 lg:col-span-2">
+              {{#foreach posts to="1"}}
+                {{> post-card
+                  image_loading="eager" 
+                  title_class="md:text-2xl lg:text-3xl"  
+                }}
+              {{/foreach}}
+            </div>
+            <div class="grid sm:grid-cols-2 sm:col-span-3 lg:grid-cols-1 lg:col-span-1 gap-10" data-featured-side>
+              {{#foreach posts from="2" to="3"}}
+                {{> post-card 
+                  image_loading="eager"
+                }}
+              {{/foreach}}
+            </div>
+            <div class="grid gap-10 sm:col-span-3 sm:grid-cols-2" data-featured-bottom>
+              {{#foreach posts from="4"}}
+                {{> post-card title_class="lg:text-2xl"}}
+              {{/foreach}}
+            </div>
+          </div>
+        {{/match}}
+      </div>
+    </section>
+  {{/if}}
+{{/get}}

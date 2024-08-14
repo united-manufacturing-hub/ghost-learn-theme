@@ -1,39 +1,28 @@
+## routes.yaml
+
 routes:
+  /archive/:
+    controller: channel
+    template: archive
+    # data: page.archive
+  /signup/:
+    template: signup
+    # data: page.singup
+  /signin/:
+    template: signin
+    # data: page.signin
+  /membership/:
+    template: membership
+    # data: page.membership
+  /tags/:
+    template: tags
+    # data: page.tags
 
 collections:
-
-  /lesson/:
-    permalink: /lesson/{slug}/
-    template: course
-    filter: "tag:hash-lesson"
-
-  /courses/:
-    permalink: /course/{slug}/
-    template: courses
-    filter: "tag:hash-course"
-
-  /blog/:
-    permalink: /blog/{slug}/
-    template: blog
-    filter: "tag:hash-blog"
-    
   /:
-    permalink: /course/{slug}/
+    permalink: /{slug}/
     template: index
 
-  /home-v2/:
-    permalink: /course/{slug}/
-    template: index-v2
-
-  /home-v3/:
-    permalink: /course/{slug}/
-    template: index-v3
-
-  /home-new-layout/:
-    permalink: /course/{slug}/
-    template: index-new-layout
-
-
 taxonomies:
-  tag: /topic/{slug}/
-  author: /instructor/{slug}/
+  tag: /tag/{slug}/
+  author: /author/{slug}/

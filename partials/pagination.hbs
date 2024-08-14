@@ -1,7 +1,13 @@
-{{#if pagination.next}}
-<div class="text-center">
-   <button type="button"
-      class="js-load-posts rainbow relative load-more-btn inline-flex items-center px-12 py-4 text-base font-medium text-gray-400 bg-blue-100 rounded-full border border-blue-100 hover:text-blue-500 hover:border-blue-800 duration-300 mt-14">{{t
-   "Load More"}}</button>
-</div>
-{{/if}}
+{{#match pagination.pages ">" 1}}
+  <nav class="my-12 text-typ flex items-center justify-center gap-4 font-medium sm:font-normal text-sm sm:gap-6 {{main_class}}" data-pagination>
+    <a data-prev class="text-sm font-medium flex items-center gap-0.5 border border-brd rounded-theme px-3 py-1 sm:px-4 hover:bg-bgr-tone{{#unless pagination.prev}} cursor-not-allowed disabled{{/unless}}" 
+      href="{{#if pagination.prev}}{{page_url pagination.prev}}{{else}}javascript:{{/if}}">
+      {{> icon name="chevron-left" icon_class="size-4 stroke-[2.5] -ml-1"}}<span>{{t "Prev"}}</span>
+    </a>
+    <span data-page-number class="">{{t "Page {current_page} of {total_pages}" current_page=pagination.page total_pages=pagination.pages}}</span>
+    <a data-next class="text-sm font-medium flex items-center gap-0.5 border border-brd rounded-theme px-3 py-1 sm:px-4 hover:bg-bgr-tone{{#unless pagination.next}} cursor-not-allowed disabled{{/unless}}" 
+      href="{{#if pagination.next}}{{page_url pagination.next}}{{else}}javascript:{{/if}}">
+      <span>{{t "Next"}}</span>{{> icon name="chevron-right" icon_class="size-4 stroke-[2.5] -mr-1"}}
+    </a>
+  </nav>
+{{/match}}

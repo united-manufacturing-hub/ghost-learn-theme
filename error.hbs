@@ -1,0 +1,20 @@
+{{!< default}}
+
+<section class="max-w-container mx-auto px-4 py-16 pb-0 flex flex-col items-center justify-center text-center">
+  <h1 class="text-7xl tracking-tight font-bold lg:text-9xl">{{statusCode}}</h1>
+  
+  <h2 class="mb-8 text-3xl tracking-tight font-semibold text-typ md:text-4xl">{{message}}</h2>
+  
+  {{#match statusCode 404}}
+    <p class="mb-8 text-lg font-light text-typ-tone">
+      {{t "Something went wrong! We can't seem to find the page you are looking for."}}
+    </p>
+  {{/match}}
+
+  <div class="flex gap-2 text-sm font-medium">
+    {{#link href="javascript:history.back()" class="border border-brd rounded-theme px-4 py-1 sm:px-6 sm:py-1.5 hover:bg-bgr-tone"}}{{t "Go back"}}{{/link}}
+    {{#link href=@site.url class="border border-brd rounded-theme px-4 py-1 sm:px-6 sm:py-1.5 hover:bg-bgr-tone"}}{{t "Home"}}{{/link}}
+  </div>
+</section>
+
+<style>[data-cta] { display: none; }</style>

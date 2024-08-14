@@ -1,31 +1,45 @@
 {{!< default}}
+
 {{#post}}
-{{#if feature_image}}
-{{> hero-section lesson_style="three"}}
-{{else}}
-{{> hero-section post_style="one"}}
-{{/if}}
-{{/post}} 
-<section class="single-area pb-20">
-   {{#post}}
-   <div class="gh-content gh-canvas pb-20 xl:pb-20 max-w-4xl mx-auto">
-       
- {{content}}
-          
-     
-   </div>
-   <div class="gh-canvas" style="margin-top: 4rem;">
-      {{#if comments}}
-      {{comments}}
-      {{/if}}
-   </div>
-   {{/post}}
-   <div class="gh-canvas">
-      <!-- {{> social-share style="one"}} -->
-      {{!-- {{> page-navigation}} --}}
-      {{> contact-expert-cta}}
-      {{> related-posts}}
-   </div>
-</section>
+  {{!-- Hero section --}}
+  {{#match @custom.default_post_template "narrow-feature-image"}}
+    {{> post-hero type="simple"}}
+  {{else match @custom.default_post_template "no-feature-image"}}
+    {{> post-hero type="no-image"}}
+  {{else match @custom.default_post_template "wide-feature-image"}}
+    {{> post-hero type="wide"}}
+  {{else match @custom.default_post_template "with-table-of-contents"}}
+    {{> post-hero type="wide-split"}}
+  {{else}}
+    {{> post-hero type="simple"}}
+  {{/match}}
 
+  {{!-- Content based on template type --}}
+  {{#match @custom.default_post_template "with-table-of-contents"}}
+    <section class="max-w-wide mx-auto flex flex-col gap-6 lg:flex-row" data-post-content>
+      {{!-- TOC --}}
+      {{> toc}}
 
+      {{!-- Content --}}
+      <article class="ghost-content prose md:prose-lg prose-theme lg:flex-1" data-no-overflow{{#unless access}} data-preview{{/unless}}>
+        {{content}}
+      </article>
+    </section>
+  {{else}}
+    {{!-- Content --}}
+    <article class="ghost-content prose md:prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
+      {{content}}
+    </article>
+  {{/match}}
+
+  {{!-- Share --}}
+  {{> social-share
+    item_class="border border-brd bg-bgr leading-tight p-1.5 flex-1 flex gap-1.5 items-center justify-center rounded-theme hover:bg-bgr-tone"
+  }}
+
+  {{!-- Comments --}}
+  {{> comments}}
+{{/post}}
+
+{{!-- Related posts --}}
+{{> related-posts}}

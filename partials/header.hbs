@@ -1,60 +1,98 @@
-<header class="header-area top-0 left-0 right-0 py-4 lg:py-4 z-[250] bg-white max-h-24">
-   <div class="container mx-auto">
-      <div class="flex items-center relative">
-         <div class="header-logo flex-auto lg:flex-none" id="header-logo"> <a class="pr-8 inline-block" href="https://www.umh.app">
-                                        <img class="" src="/assets/images/UMH_Logo%20Icon_Black.png" alt="UMH Logo" style="max-height: 48px;max-width: 36px;">
-                                    </a>
-         </div>
-         <div class="mobile-menu bg-white hidden lg:flex flex-1 items-center shadow-xl lg:shadow-none" id="header-navigation">
-            {{navigation}}
-         </div>
-         <a class="popup-with-form flex lg:hidden items-center p-2"  href="#/search">
-            <svg
-               class="w-6 h-6 text-gray-800" fill="none" stroke="currentcolor"
-               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-         </a>
-         <button class="mobile-toggle items-center block lg:hidden" aria-label="Menu Button"> <span
-            class="bg-gray-800"></span> <span class="bg-gray-800"></span> <span
-            class="bg-gray-800"></span>
-         </button>
-         <div class="hidden lg:flex items-center">
-            <a
-               class="popup-with-form flex items-center px-6 py-3 text-base text-gray-400 hover:bg-blue-50 rounded-full hover:text-blue-800 group duration-300 ml-4 font-medium"
-               href="#/search">
-               <span class="mr-2">
-                  <svg
-                     class="w-5 h-5 text-gray-400 group-hover:text-blue-800"
-                     fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                     <path stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
-               </span>
-               {{t "Search"}} 
-            </a>
+<header class="px-4 sm:px-6 text-typ whitespace-nowrap{{#if @custom.sticky_header}} sticky top-0 z-[1000] bg-bgr lg:bg-transparent{{/if}}{{#is "signin,signup"}} hidden{{/is}}"  data-header x-init="renderSubmenus(){{#if @custom.sticky_header}};window.pageYOffset > 50 ? isScrolledOnload = true : null{{/if}}"
+  {{#if @custom.sticky_header}}x-data="{ isScrolled: false, isScrolledOnload: false }" @scroll.window="isScrolled = (window.pageYOffset < 50) ? false : true;window.pageYOffset <= 50 ? isScrolledOnload = false : null" :class="[isScrolled ? 'is-scrolled' : '',isScrolledOnload ? 'is-scrolled-onload' : '']"{{/if}}>
+  <div class="max-w-container mx-auto py-4 md:py-6 flex items-center justify-center gap-4 relative before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px] before:bg-fading">
 
-            <!--
-            {{#if @site.members_enabled}}
-            {{#unless @member}}
-            <a href="#/portal/signup"
-               class="text-base text-white font-medium bg-black bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-3 px-8 rounded-full ml-4">{{t
-            "Subscribe"}}</a>
-            {{else}}
-            <a href="#/portal/account"
-               class="text-base text-white font-medium bg-black bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-3 px-8 rounded-full ml-4">{{t
-            "Account"}}</a>
-            {{/unless}}
-            {{/if}}
-            -->
-            
-            <a href="https://www.umh.app/?utm_source=learn&utm_medium=community&utm_campaign={{encode readable_url url}}&utm_content=header"
-               class="text-base text-white font-medium bg-umh-blue bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-300 py-3 px-8 rounded-full ml-4" id="cta-header">{{t
-            "About UMH"}}</a>
-         </div>
-      </div>
-   </div>
+    {{!-- Brand --}}
+    <div class="flex-1 flex justify-start lg:transition-move duration-300" data-header-brand>
+      <a class="" href="{{@site.url}}" data-brand>
+        {{> logo loading="eager"}}
+      </a>
+    </div>
+
+    {{!-- Navigation --}}
+    <nav class="relative hidden transition-[width,filter] duration-300 text-sm lg:flex justify-center p-1 border border-brd rounded-theme-lg{{#if @custom.sticky_header}}  bg-bgr-opac backdrop-blur{{/if}}" data-nav="desktop" {{#if @custom.sticky_header}} :class="isScrolled ? 'drop-shadow-xl' : ''"{{/if}}>
+      {{navigation 
+        ul_class="flex gap-0.5"
+        li_class="flex relative border border-transparent hover:bg-bgr-tone rounded-theme"
+        a_class="w-full flex px-4 py-1.5 rounded-theme"
+      }}
+
+      {{!-- Nav CTA--}}
+      {{#match @custom.header_action "cta"}}
+        {{#if @custom.cta_text}}
+          <a href="{{@custom.cta_link}}" data-nav-cta
+            class="flex items-center justify-center opacity-0 w-0 p-0 translate-x-full shadow-btn border border-b-0 border-opac bg-brand text-sm font-medium text-brand-contrast py-1.5 rounded-theme transition-all duration-200 hover:brightness-105 hover:shadow-btn-hover">
+            <span>{{@custom.cta_text}}</span>
+          </a>
+        {{/if}}
+      {{/match}}
+    </nav>
+
+    {{!-- Actions --}}
+    <div class="flex flex-1 gap-2 items-center justify-end transition-move duration-300" data-header-actions>
+
+      {{!-- Search button --}}
+      <button class="hidden sm:flex items-center justify-center rounded-theme size-8 md:size-9 hover:text-brand" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
+        {{> icon name="search" icon_class="w-5 h-5 stroke-2"}}
+      </button>
+
+      {{!-- Header action: CTA --}}
+      {{#match @custom.header_action "cta"}}
+        {{#if @custom.cta_text}}
+          <a href="{{@custom.cta_link}}" 
+            class="shadow-btn border border-b-0 border-opac bg-brand text-sm font-medium text-brand-contrast px-4 py-2 rounded-theme md:px-5 transition duration-300 hover:brightness-105 hover:shadow-btn-hover">
+            <span>{{@custom.cta_text}}</span>
+          </a>
+        {{/if}}
+      {{/match}}
+
+      {{!-- Header action: Sign in/Sign up --}}
+      {{#match @custom.header_action "signin-signup"}}
+        {{#if @site.members_enabled}}
+          {{#unless @member}}
+            <a href="/signin/" data-portal="signin"
+              class="hidden sm:block border border-transparent text-sm px-4 py-2 rounded-theme hover:border-brd">
+              <span>{{t "Sign in"}}</span>
+            </a>
+            <a href="/signup/" data-portal="signup"
+              class="shadow-btn border border-b-0 border-opac bg-brand text-sm font-medium text-brand-contrast px-4 py-2 rounded-theme md:px-5 transition duration-300 hover:brightness-105 hover:shadow-btn-hover">
+              <span>{{t "Sign up"}}</span>
+            </a>
+          {{/unless}}
+        {{/if}}
+      {{/match}}
+
+      {{!-- Header action: Subscribe --}}
+      {{#match @custom.header_action "subscribe"}}
+        {{#unless @member}}
+          <a href="/subscribe/" data-portal="subscribe"
+            class="shadow-btn border border-b-0 border-opac bg-brand text-sm font-medium text-brand-contrast px-4 py-2 rounded-theme md:px-5 transition duration-300 hover:brightness-105 hover:shadow-btn-hover">
+            <span>{{t "Subscribe"}}</span>
+          </a>
+        {{/unless}}
+      {{/match}}
+
+      {{!-- Member/User button --}}
+      {{#if @member}}
+        <button class="ml-1 relative size-8 md:size-9 hover:text-brand" data-portal="account" aria-label="{{@member.name}}">
+          <img class="border border-opac shadow relative size-8 md:size-9 rounded-full" 
+            src="{{@member.avatar_image}}"
+            alt="{{@member.name}}">
+          {{>icon name="user" icon_class="absolute z-[-1] size-7 stroke-[1.5] inset-0.5 md:inset-1"}}
+        </button>
+      {{/if}}
+
+      {{!-- Menu button --}}
+      <button class="flex flex-col gap-1.5 size-8 md:size-9 items-center justify-center rounded-theme group hover:text-brand lg:hidden" 
+        data-menu-toggle aria-label="{{t "Menu toggle"}}" aria-expanded="false" aria-haspopup="true" aria-controls="menu"
+        @click="menuOpen = !menuOpen; event.currentTarget.setAttribute('aria-expanded', menuOpen);"
+      >
+        <span class="relative pointer-events-none w-5 h-0.5 rounded-sm bg-typ-tone group-hover:bg-brand transition-all"
+          :class="menuOpen ? 'rotate-45 top-1' : 'rotate-0 top-0'"></span>
+        <span class="relative pointer-events-none w-5 h-0.5 rounded-sm bg-typ-tone group-hover:bg-brand transition-all"
+          :class="menuOpen ? '-rotate-45 -top-1' : ''"></span>
+      </button>
+    </div>
+
+  </div>
 </header>

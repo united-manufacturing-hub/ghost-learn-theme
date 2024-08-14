@@ -1,0 +1,20 @@
+{{#if @custom.featured_tags}}
+  {{#get "tags" filter="slug:[{{@custom.featured_tags}}]" include="count.posts" limit="all"}}
+    {{#if tags}}
+      <nav class="mb-6" data-featured-tags x-init="$nextTick(() => { handleTagList() })">
+        <ul role="list" class="text-sm text-typ-tone font-medium flex gap-1 overflow-x-scroll no-scrollbar border-b border-brd pb-2.5">
+          <li>
+            <a href="/" class="relative block text-nowrap px-3 py-1 border border-transparent rounded-theme after:content-[''] after:absolute after:bottom-[-11px] after:left-[calc(50%_-_16px)] after:w-8 after:h-0.5 after:rounded-t-sm after:bg-transparent hover:bg-bgr-tone">{{t "All posts"}}</a>
+          </li>
+          {{#foreach tags}}
+            <li>
+              <a href="{{url}}" class="relative block text-nowrap px-3 py-1 border border-transparent rounded-theme md:px-4 after:content-[''] after:absolute after:bottom-[-11px] after:left-[calc(50%_-_16px)] after:w-8 after:h-0.5 after:rounded-t-sm after:bg-transparent hover:bg-bgr-tone">
+                {{name}}
+              </a>
+            </li>
+          {{/foreach}}
+        </ul>
+      </nav>
+    {{/if}}
+  {{/get}}
+{{/if}}
