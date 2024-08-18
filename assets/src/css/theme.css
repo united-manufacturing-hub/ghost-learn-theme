@@ -182,11 +182,13 @@ header.sticky ~ main .ghost-content h5 {
 
 .toc-list-item a:hover { color: var(--ghost-accent-color); }
 
+.toc-list-item a.w--current,
 .is-active-li > a {
   font-weight: 500;
   color: var(--ghost-accent-color)
 }
 
+.toc-list-item a.w--current:before,
 .is-active-li > a:before {
   content: "";
   position: absolute;

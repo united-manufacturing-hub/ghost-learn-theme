@@ -5,20 +5,46 @@
     <div class="text-typ-tone w-full flex-1 flex flex-col gap-4 mx-auto{{#match type "wide-split"}} max-w-wide flex-[2]{{else}} max-w-content{{/match}}" data-post-hero-content>
       {{!-- Tag, date, reading time --}}
       {{#is "post"}}
-        <div class="text-typ-tone flex gap-2">
-          {{#foreach tags limit="1"}}
-            <a href="{{url}}" class="hover:text-brand">{{name}}</a>
-            <span>·</span>
-          {{/foreach}}
-          <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time> 
-          {{#if reading_time}}
-            <span>·</span>
-            <span class="">
-              {{!-- {{t "1 min read"}} {{t "% min read"}} --}}
-              {{reading_time minute=(t '1 min read') minutes=(t '% min read')}}
-            </span>
-          {{/if}}
-        </div>
+          <div class="text-typ-tone flex gap-2">
+            {{#match lesson_style "one"}}
+                  {{#foreach tags visibility="internal" limit="1"}}
+                    {{#get "posts" include ="tags" filter="tag:{{slug}}+tag:hash-course"}}
+                      {{#if posts}}
+                        {{#foreach posts}}
+                        <a href="{{url}}" class="hover:text-brand">{{title}}</a>
+                        <span>·</span>
+                        {{/foreach}}
+                      {{/if}}
+                    {{/get}}
+                  {{/foreach}}
+              {{else}}
+                {{#match course_style "one"}}
+
+                  {{#foreach tags visibility="internal" limit="1"}}
+                  {{#get "posts" filter="tag:[hash-lesson]+tag:{{slug}}" order="title asc" include="tags,authors"}}
+                      <span>{{plural posts.length empty='No Lessons available' singular='Total % Lessons available' plural='Total % Lessons available'}}</span>
+                      <span>·</span>
+                  {{/get}}
+                  {{/foreach}}
+
+                {{else}}
+                    {{#foreach tags limit="1"}}
+                      <a href="{{url}}" class="hover:text-brand">{{name}}</a>
+                      <span>·</span>
+                    {{/foreach}}
+                {{/match}}
+            {{/match}}
+            <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time> 
+            {{!-- {{#if reading_time}}
+              <span>·</span>
+              <span class="">
+                {{reading_time minute=(t '1 min read') minutes=(t '% min read')}}
+              </span>
+            {{/if}} --}}
+          </div>
+
+
+
       {{/is}}
 
       {{!-- Title --}}
