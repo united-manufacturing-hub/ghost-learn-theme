@@ -4,9 +4,9 @@
 
     {{!-- Brand --}}
     <div class="flex-1 flex justify-start lg:transition-move duration-300" data-header-brand>
-      {{!-- <a class="" href="{{@site.url}}" data-brand>
+      <a class="" href="{{@site.url}}" data-brand>
         {{> logo loading="eager"}}
-      </a> --}}
+      </a>
     </div>
 
     {{!-- Navigation --}}
@@ -32,9 +32,9 @@
     <div class="flex flex-1 gap-2 items-center justify-end transition-move duration-300" data-header-actions>
 
       {{!-- Search button --}}
-      {{!-- <button class="hidden sm:flex items-center justify-center rounded-theme size-8 md:size-9 hover:text-brand" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
+      <button class="hidden sm:flex items-center justify-center rounded-theme size-8 md:size-9 hover:text-brand" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
         {{> icon name="search" icon_class="w-5 h-5 stroke-2"}}
-      </button> --}}
+      </button>
 
       {{!-- Header action: CTA --}}
       {{#match @custom.header_action "cta"}}
