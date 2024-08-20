@@ -2,8 +2,7 @@ name: Deploy Theme
 on:
   push:
     branches:
-      - master
-      - main
+      - flair
 jobs:
   deploy:
     runs-on: ubuntu-22.04
