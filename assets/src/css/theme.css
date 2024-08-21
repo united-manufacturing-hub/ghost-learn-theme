@@ -227,3 +227,10 @@ article[data-preview]:after {
 }
 
 article[data-preview] aside { z-index: 1; }
+
+/* Custom components */
+[data-color-scheme="dark"] {
+  .nav_menu_link,.button.is-nav-secondary,.nav_logo.w-embed svg{
+    color: white;
+  }
+}

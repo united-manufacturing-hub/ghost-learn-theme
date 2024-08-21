@@ -30,6 +30,7 @@
 
     {{!-- Actions --}}
     <div class="flex flex-1 gap-2 items-center justify-end transition-move duration-300" data-header-actions>
+      {{> toggle-color-scheme}}
 
       {{!-- Search button --}}
       <button class="hidden sm:flex items-center justify-center rounded-theme size-8 md:size-9 hover:text-brand" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
