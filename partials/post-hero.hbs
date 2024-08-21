@@ -1,5 +1,5 @@
 <section class="px-4 sm:px-6" data-post-hero="{{hero_type}}">
-  <div class="max-w-wide mx-auto py-12 flex items-center flex-col gap-8{{#match type "wide-split"}} md:flex-wrap md:flex-row md:items-end{{/match}}{{#unless feature_image}}  mb-12 relative before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px] before:bg-fading{{/unless}}">
+  <div class="max-w-wide mx-auto py-12 flex items-center flex-col gap-8{{#match type "wide-split"}} md:flex-wrap md:flex-row md:items-center{{/match}}{{#unless feature_image}}  mb-12 relative before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px] before:bg-fading{{/unless}}">
 
     {{!-- Content --}}
     <div class="text-typ-tone w-full flex-1 flex flex-col gap-4 mx-auto{{#match type "wide-split"}} max-w-wide flex-[2]{{else}} max-w-content{{/match}}" data-post-hero-content>
@@ -34,17 +34,8 @@
                     {{/foreach}}
                 {{/match}}
             {{/match}}
-            <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time> 
-            {{!-- {{#if reading_time}}
-              <span>·</span>
-              <span class="">
-                {{reading_time minute=(t '1 min read') minutes=(t '% min read')}}
-              </span>
-            {{/if}} --}}
+            <time class="whitespace-nowrap" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
           </div>
-
-
-
       {{/is}}
 
       {{!-- Title --}}
@@ -80,17 +71,18 @@
           {{/foreach}}
         </ul>
       {{/is}}
-    </div>
+      
 
     {{#match type "wide-split"}}
       {{#if custom_excerpt}}
         <p class="text-typ-tone text-lg font-light hidden md:block flex-1">{{custom_excerpt}}</p>
       {{/if}}
     {{/match}}
+    </div>
 
     {{!-- Feature image --}}
     {{#if feature_image}}
-      <figure class="{{#match type "simple"}}max-w-content {{else}}max-w-wide {{/match}}w-full h-full relative{{#match type "no-image"}} hidden{{/match}}">
+      <figure class="{{#match type "simple"}}max-w-content {{else}}max-w-wide {{/match}}w-full h-full relative{{#match type "no-image"}} hidden{{/match}} {{#match type "wide-split"}} max-w-wide flex-[2]{{else}} max-w-content{{/match}}">
         {{> image
           image_type="post"
           image_class="w-full object-cover rounded-theme-xs aspect-[16/9] border border-brd bg-bgr-tone"
