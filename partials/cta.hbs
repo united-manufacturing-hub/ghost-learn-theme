@@ -1,6 +1,6 @@
 {{#get "pages" filter="slug:cta" limit="1"}}
   {{#foreach pages}}
-    <section class="px-4 sm:px-6 mt-16 mb-[calc(-4rem_-_1px)]{{#is "signin,signup"}} hidden{{/is}}" data-cta>
+    <section class="px-4 sm:px-6 mt-16 mb-16{{#is "signin,signup"}} hidden{{/is}}" data-cta>
       <div class="max-w-container mx-auto">
         <div class="border border-brd  relative bg-bgr-tone flex flex-col items-center rounded-theme-md overflow-hidden">
           <article class="z-[2] px-6 py-16 md:px-8 md:py-24 mx-auto ghost-content prose prose-theme prose-lg md:prose-p:mb-12 prose-h2:mb-3 prose-h2:font-semibold md:prose-h2:text-3xl lg:prose-h2:text-4xl font-light !mb-0 text-center items-center">

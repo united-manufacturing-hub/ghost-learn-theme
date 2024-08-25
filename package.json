@@ -191,6 +191,11 @@
         "group": "homepage",
         "description": "List of tag slugs to be featured as categories"
       },
+      "featured_tags_for_blog": {
+        "type": "text",
+        "group": "homepage",
+        "description": "List of tag slugs to be featured as categories on the blog page"
+      },
       "featured_tags_layout": {
         "type": "select",
         "options": [
