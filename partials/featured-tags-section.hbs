@@ -1,4 +1,4 @@
-{{#get "posts" filter="tag:{{slug}}" include="authors,tags" limit="3"}}
+{{#get "posts" filter="tag:{{slug}}" include="authors,tags" limit="3" order="published_at asc"}}
   {{#if posts}}
     <section class="px-4 sm:px-6 mb-24" data-featured-tag="{{../slug}}">
       <div class="max-w-container mx-auto">
