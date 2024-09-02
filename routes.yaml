@@ -31,8 +31,8 @@ collections:
 
   /featured/:
     permalink: /blog/{slug}/
-    template: blog
-    filter: "tag:it-ot-architecture"
+    template: featured
+    # filter: "tag:it-ot-architecture"
 
   # /blog/:
   #   permalink: /blog/{slug}/
