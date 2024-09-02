@@ -18,7 +18,7 @@
 
     {{!-- Feed --}}
 
-    {{#get "posts" filter="slug:it-ot-architecture" include="count.posts" limit="all"}}
+    {{#get "posts" filter="tag:it-ot-architecture" include="count.posts" limit="all"}}
     {{> post-feed}}
     {{/get}}
 
