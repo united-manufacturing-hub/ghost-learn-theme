@@ -24,15 +24,20 @@ collections:
     template: course
     filter: "tag:hash-lesson"
 
-  /courses/:
+  /guides/:
     permalink: /course/{slug}/
     template: courses
     filter: "tag:hash-course"
 
-  /blog/:
+  /featured/:
     permalink: /blog/{slug}/
     template: blog
-    filter: "tag:hash-blog"
+    filter: "tag:it-ot-architecture"
+
+  # /blog/:
+  #   permalink: /blog/{slug}/
+  #   template: blog
+  #   filter: "tag:hash-blog"
     
   /:
     permalink: /course/{slug}/
