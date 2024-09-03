@@ -28,6 +28,7 @@ collections:
     permalink: /course/{slug}/
     template: courses
     filter: "tag:hash-course"
+    order: "published_at desc"
 
   /featured/:
     permalink: /blog/{slug}/
