@@ -1,12 +1,13 @@
 {{!< default}}
 
-{{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
-{{#foreach tags}}
+{{!-- {{#get "tags" include="count.posts" order="count.posts desc" limit="all"}}
+{{#foreach tags}} --}}
 <section class="px-4 mb-24" data-feed-section="{{posts.length}}">
   <div class="max-w-container mx-auto">
-    <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5">{{name}}</h2>
+    {{!-- <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5">{{name}}</h2> --}}
 
-      {{#get "posts" include="tags,authors"  filter="tag:{{slug}}+tag:hash-course" order="published_at desc"}}
+      {{!-- {{#get "posts" include="tags,authors"  filter="tag:{{slug}}+tag:hash-course" order="published_at asc"}} --}}
+      {{#get "posts" include="tags,authors"  filter="tag:tag:hash-course" order="published_at asc"}}
         <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3" data-post-feed>
           {{#foreach posts}}
             {{> post-card }}
@@ -16,5 +17,5 @@
 
   </div>
 </section>
-{{/foreach}}
-{{/get}}
+{{!-- {{/foreach}}
+{{/get}} --}}
