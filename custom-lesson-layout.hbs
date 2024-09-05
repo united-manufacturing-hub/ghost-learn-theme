@@ -1,69 +1,56 @@
-{{!< default}} 
+{{!< default}}
+
 {{#post}}
-{{> hero-section lesson_style="two"}}
-<script > let tiersID = []; </script>
-<section class="single-area pb-20">
-   <div class="container mx-auto">
-      <div class="grid lg:grid-cols-12 gap-8">
-         <div class="lg:col-span-4">
-            {{#foreach tags visibility="internal" limit="1"}}
-            {{#get "posts" include ="tags,authors,tiers" order="published_at asc" filter="tag:{{slug}}+tag:hash-course"}}
-            {{#if posts}}
+  {{!-- Hero section --}}
+  {{> post-hero type="wide-split" lesson_style="one"}}
+  
+  <section class="max-w-wide mx-auto flex flex-col gap-6 lg:flex-row" data-post-content>
+    {{!-- Sidebar --}}
+    <aside class="px-4 md:px-0 w-full max-w-content mx-auto lg:max-w-xs"> 
+      <div class="sticky border-b border-brd pb-2 mb-8 lg:border-none{{#if @custom.sticky_header}} top-[92px]{{else}} top-4{{/if}}"> 
+        {{!-- Mobile toggle --}}
+        <button class="w-full text-xs lg:text-[0.8rem] uppercase text-typ-tone font-semibold border border-brd px-6 py-2 mb-2 flex items-center justify-center gap-2 rounded-theme hover:bg-bgr-tone lg:border-none lg:px-2.5 lg:py-1 lg:cursor-text lg:hover:bg-bgr lg:justify-start" 
+          :data-toc-toggle="tocOpen ? 'active' : 'inactive'" aria-label="{{t "Table of Contents"}}" @click="tocOpen = !tocOpen">
+          <span class="mt-[1px]">{{t "Lessons"}}</span>
+          {{> icon name="plus" icon_class="size-[14px] stroke-[2.5] hidden lg:invisible"}}
+          {{> icon name="minus" icon_class="size-[14px] stroke-[2.5] hidden lg:invisible"}}
+        </button>
+
+        {{!-- Toc items will be generated here --}}
+        <div class="text-typ-tone text-sm lg:text-[0.95rem] lg:block" :class="tocOpen ? 'block' : 'hidden'">
+
+          {{#has tag="#lesson"}}
+          {{#foreach tags visibility="internal" limit="1"}}
+          {{#get "posts" limit="all" include ="tags,authors,tiers" filter="tag:{{slug}}+tag:hash-lesson" order="published_at asc" include="tags,authors"}}
+          <ol class="toc-list ">
             {{#foreach posts}}
-            {{#foreach tiers}}
-            <script > tiersID.push("#id-{{id}}"); </script>
+            <li class="toc-list-item">
+              <a href="{{url}}" class="toc-link node-name--H2">{{title}}</a>
+            </li>
             {{/foreach}}
-            {{/foreach}}
-            {{/if}}
-            {{/get}}
-            {{/foreach}}
-            <div class="sidebar rounded-lg sticky top-32 shadow hover:shadow-lg duration-300">
-               <div class="left-lesson-list">
-                  {{#has tag="#lesson"}}
-                  {{#foreach tags visibility="internal" limit="1"}}
-                  {{#get "posts" limit="all" include ="tags,authors,tiers" filter="tag:{{slug}}+tag:hash-lesson" order="published_at asc"
-                  include="tags,authors"}}
-                  <div class="related-lesson">
-                     <div class="lesson-list sticky top-0">
-                        <ol class="lesson-list ">
-                           {{#foreach posts}}
-                           {{#if access}}
-                           <a href="{{url}}">
-                           {{> lessonlist}}
-                           </a> 
-                           {{else}}
-                           <a class="modal-open" href="#">
-                           {{> lessonlist}}
-                           </a> 
-                           {{/if}}
-                           {{/foreach}}
-                        </ol>
-                     </div>
-                  </div>
-                  {{/get}}
-                  {{/foreach}}
-                  {{/has}}
-                  <script> $("#id-{{id}}").addClass('active'); </script>
-               </div>
-            </div>
-         </div>
-         <div class="lg:col-span-8">
-            <div class="gh-content pb-12">
-               {{content}}
-            </div>
-            <div class="w-full">
-               {{#if comments}}
-               {{comments}}
-               {{/if}}
-            </div>
-         </div>
+          </ol>
+          {{/get}}
+          {{/foreach}}
+          {{/has}}
+        </div>
       </div>
-   </div>
-   <div class="gh-canvas mt-8">
-      <!-- {{> social-share style="one"}} -->
-      {{!-- {{> page-navigation}} --}}
-      {{> contact-expert-cta}}
-      {{> related-posts}}
-   </div>
-</section>
+    </aside>
+
+
+    {{!-- Content --}}
+    <article class="ghost-content prose md:prose-lg prose-theme lg:flex-1" data-no-overflow{{#unless access}} data-preview{{/unless}}>
+      {{content}}
+    </article>
+  </section>
+
+  {{!-- Share --}}
+  {{> social-share
+    item_class="border border-brd bg-bgr leading-tight p-1.5 flex-1 flex gap-1.5 items-center justify-center rounded-theme hover:bg-bgr-tone"
+  }}
+
+  {{!-- Comments --}}
+  {{> comments}}
 {{/post}}
+
+{{!-- Related posts --}}
+{{> related-posts}}

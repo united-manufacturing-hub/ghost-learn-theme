@@ -1,0 +1,99 @@
+{{!-- Typography --}}
+{{#match @custom.font_headings "!=" "System"}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{else match @custom.font_headings "!=" "System"}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{/match}}
+
+{{!-- Headings --}}
+{{#match @custom.font_headings "DM Sans"}}
+  {{> font-loader id="DM+Sans" weights="300..800" font_headings="DM Sans" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Figtree"}}
+  {{> font-loader id="Figtree" weights="300..800" font_headings="Figtree" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Inter"}}
+  {{> font-loader id="Inter" weights="300..800" font_headings="Inter" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Kode Mono"}}
+  {{> font-loader id="Kode+Mono" weights="400..700" font_headings="Kode Mono" fallback="monospace"}}
+{{/match}}
+
+{{#match @custom.font_headings "Lexend"}}
+  {{> font-loader id="Lexend" weights="300..800" font_headings="Lexend" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Noto Serif"}}
+  {{> font-loader id="Noto+Serif" weights="300..800" font_headings="Noto+Serif" fallback="serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Outfit"}}
+  {{> font-loader id="Outfit" weights="300..800" font_headings="Outfit" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Playfair"}}
+  {{> font-loader id="Playfair" weights="300..800" font_headings="Playfair" fallback="serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Sen"}}
+  {{> font-loader id="Sen" weights="400..800" font_headings="Sen" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Source Serif 4"}}
+  {{> font-loader id="Source+Serif+4" weights="300..800" font_headings="Source Serif 4" fallback="serif"}}
+{{/match}}
+
+{{#match @custom.font_headings "Space Grotesk"}}
+  {{> font-loader id="Space+Grotesk" weights="300..700" font_headings="Space Grotesk" fallback="sans-serif"}}
+{{/match}}
+
+
+{{!-- Body --}}
+{{#match @custom.font_body "DM Sans"}}
+  {{> font-loader id="DM+Sans" weights="300..800" font_body="DM Sans" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Figtree"}}
+  {{> font-loader id="Figtree" weights="300..800" font_body="Figtree" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Inter"}}
+  {{> font-loader id="Inter" weights="300..800" font_body="Inter" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Kode Mono"}}
+  {{> font-loader id="Kode+Mono" weights="400..700" font_body="Kode Mono" fallback="monospace"}}
+{{/match}}
+
+{{#match @custom.font_body "Lexend"}}
+  {{> font-loader id="Lexend" weights="300..800" font_body="Lexend" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Noto Serif"}}
+  {{> font-loader id="Noto+Serif" weights="300..800" font_body="Noto+Serif" fallback="serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Outfit"}}
+  {{> font-loader id="Outfit" weights="300..800" font_body="Outfit" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Playfair"}}
+  {{> font-loader id="Playfair" weights="300..800" font_body="Playfair" fallback="serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Sen"}}
+  {{> font-loader id="Sen" weights="400..800" font_body="Sen" fallback="sans-serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Source Serif 4"}}
+  {{> font-loader id="Source+Serif+4" weights="300..800" font_body="Source Serif 4" fallback="serif"}}
+{{/match}}
+
+{{#match @custom.font_body "Space Grotesk"}}
+  {{> font-loader id="Space+Grotesk" weights="300..700" font_body="Space Grotesk" fallback="sans-serif"}}
+{{/match}}

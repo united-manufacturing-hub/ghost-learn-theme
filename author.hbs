@@ -1,152 +1,39 @@
 {{!< default}}
+
 {{#author}}
-<div class="hero-area relative">
-    <div class="hero-bg relative">
-{{#if cover_image}}
- <img class="w-full h-64 object-cover"
-            src="{{#if cover_image}}{{cover_image}}{{else}}{{asset 'images/prev.png'}} {{/if}}" alt="{{name}}">
-{{else}}
-<div class="w-full  h-64 bg-white">
-
-</div>
-{{/if}}
-
-        <span class="overlay-bg absolute left-0 right-0 bottom-0 top-0 bg-blue-800 opacity-10 group-hover:opacity-20  duration-100"></span>
+  <section class="px-4 sm:px-6" data-author>
+    <div class="max-w-xl mx-auto py-16 md:py-20 flex flex-col gap-3 items-center justify-center text-center">
+      {{#if profile_image}}
+        <figure class="rounded-full h-full relative">
+          {{> image
+            image_type="author"
+            image_class="w-full object-cover w-24 h-24 rounded-full aspect-square"
+            image_url=profile_image
+            size_xs=true
+            size_s=true
+            size_m=true
+            sizes="(max-width: 600px) 100px, 160px"
+            loading="eager"
+          }}
+        </figure>
+      {{/if}}
+      <h1 class="font-semibold tracking-tight text-2xl md:text-3xl lg:text-4xl">{{name}}</h1>
+      {{#if bio}}
+        <p class="font-light text-lg text-typ-tone">{{bio}}</p>
+      {{/if}}
     </div>
-    <div class="container mx-auto">
-        <div class="hero-author-1 text-center relative -mt-20">
-            {{#if profile_image}}
-            <img class="w-32 h-32 rounded-full object-cover mx-auto mb-4" src="{{img_url profile_image}}" alt="{{name}}">
-            {{/if}}
-            <h5 class="font-serif text-3xl text-gray-800 font-bold mb-2">{{name}}</h5>
-
-            {{#get "posts" include="count.posts" filter="authors:{{slug}}+tag:hash-course"}}
-            <p class="inline-block text-sm text-gray-800 group-hover:text-blue-800 font-medium bg-amber-100 group-hover:bg-blue-100 py-1 px-4 mb-4 duration-300">{{plural posts.length empty='No Courses
-                Published'
-                singular='% Course Published' plural='% Courses Published'}}</p>
-            {{/get}}
-
-
-<p class="text-base leading-relaxed text-gray-400 font-normal mt-4">{{bio}} </p>
-
-        </div>
-    </div>
-</div>
+  </section>
 {{/author}}
 
-<section class="author-area py-20 xl:py-28">
-    <div class="container mx-auto">
-        <div class="tab-slider--nav border-b border-blue-50 mb-8 lg:mb-14">
-            <ul class="tab-slider--tabs">
+{{!-- Posts --}}
+<section class="px-4 sm:px-6 mb-24" data-feed-section="{{posts.length}}">
+  <div class="max-w-container mx-auto">
+    <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5">{{t "Latest"}}</h2>
 
-                <li class="tab-slider--trigger text-xl text-gray-400 font-medium active" rel="tab1">{{t "Courses"}}
-                    {{#author}}
-                    {{#get "posts" include="count.posts" filter="authors:{{slug}}+tag:hash-course"}}
-                    ({{posts.length}})
-                    {{/get}}
-                    {{/author}}
-                </li>
-
-                <li class="tab-slider--trigger text-xl text-gray-400 font-medium" rel="tab4">{{t "Articles"}}
-                    {{#author}}
-                    {{#get "posts" include="count.posts" filter="tag:-[hash-course, hash-lesson]+authors:{{slug}}"}}
-                    ({{posts.length}})
-                    {{/get}}
-                    {{/author}}
-                </li>
- 
-                <li class="tab-slider--trigger text-xl text-gray-400 font-medium" rel="tab3">{{t "Activity"}}</li>
-            </ul>
-        </div>
-        <div class="tab-slider--container">
-            <div id="tab1" class="tab-slider--body">
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-                    {{#author}}
-                        {{#get "posts" include="count.posts,tags,authors" filter="authors:{{slug}}+tag:[hash-course]" limit="all"}}
-                            {{#if posts}}
-                                {{#foreach posts}}
-                                    {{> cards/card-course}}
-                                {{/foreach}}
-                            {{else}}
-                                <h3>{{t "Nothing published yet!"}}</h3>
-                            {{/if}}
-                        {{/get}}
-                    {{/author}}
-                </div>
-            </div>
-     
-            <div id="tab3" class="tab-slider--body">
-                <div class="w-full">
-                    <h3 class="text-center text-2xl mb-8 user-activity">{{t "User's Activity :"}} {{date format="Y"}}</h3>
-                    <canvas id="myChart"></canvas>
-                </div>
-            </div>
-            <div id="tab4" class="tab-slider--body">
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-                     {{#author}}
-                        {{#get "posts" include="count.posts,tags,authors" filter="tag:-[hash-course, hash-lesson]+authors:{{slug}}" limit="all"}}
-                         {{#if posts}}
-                            {{#foreach posts }}
-                                {{> cards/card-post}}
-                            {{/foreach}}
-                            {{else}}
-                                <h3>{{t "Nothing published yet!"}}</h3>
-                            {{/if}}
-                        {{/get}}
-                    {{/author}}
-                    
-                </div>
-            </div>
-        </div>
-
-    </div>
+    {{!-- Feed --}}
+    {{> post-feed}}
+    
+    {{!-- Pagination --}}
+    {{> pagination}}
+  </div>
 </section>
-
-{{#author}}
-<script>
-    
-    let countLesson = [0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null];
-    let countCourse = [0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null];
-    let coutArticle = [0, 0, 0, 0, 0, 0, 0, 0, null, null, null, null];
-    let month;
-    let year;
-
-    const currentYear = new Date().getFullYear();
-
-    function countMonthData(month, counterArray, year, currentYear)
-    {
-        switch(month){
-            case month:
-                if(year == currentYear){   
-                    counterArray[month]++;
-                }
-                break;
-        }
-        return counterArray;
-    }
-    
-    {{#get "posts" filter='authors:{{slug}}+tag:hash-lesson' limit="all"}}
-        {{#foreach posts}}
-            month = '{{date published_at format="M"}}';
-            year = '{{date published_at format="Y"}}';     
-            countLesson = countMonthData(month-1, countLesson, year, currentYear);
-        {{/foreach}}
-    {{/get}}
-
-    {{#get "posts" filter='authors:{{slug}}+tag:hash-course' limit="all"}}
-        {{#foreach posts}}
-            month = '{{date published_at format="M"}}';
-            year = '{{date published_at format="Y"}}';   
-            countCourse = countMonthData(month-1, countCourse, year, currentYear);
-        {{/foreach}}
-    {{/get}}
-
-    {{#get "posts" filter='tag:-[hash-course, hash-lesson]+authors:{{slug}}' limit="all"}}
-        {{#foreach posts}}
-            month = '{{date published_at format="M"}}';
-            year = '{{date published_at format="Y"}}';   
-            coutArticle = countMonthData(month-1, coutArticle, year, currentYear);
-        {{/foreach}}
-    {{/get}}
-</script>
-{{/author}}

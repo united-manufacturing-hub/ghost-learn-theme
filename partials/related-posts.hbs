@@ -1,12 +1,17 @@
-{{#get "posts" include="tags,authors" filter="tag:it-ot-architecture+tag:hash-blog" order="published_at desc" limit="9" as |not_really_related|}}
-<div class="related-lesson">
-   <div class="section-title max-w-lg mb-8 mt-8">
-      <h2 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  mb-6">{{t "Related Articles"}}</h2>
-   </div>
-   <div class="grid sm:grid-cols-2 gap-8 related-articles-cta">
-      {{#foreach not_really_related}}
-      {{> cards/card-post}}
-      {{/foreach}}
-   </div>
-</div>
-{{/get}}
+{{#is "post"}}
+  {{#get "posts" include="tags,authors,tiers" limit="3" filter="tags:[{{post.tags}}]+id:-{{post.id}}" as |related|}}
+    {{#if related}}
+      <section class="px-4 sm:px-6 mb-12" data-related="posts">
+        <div class="max-w-container mx-auto">
+          <h2 class="text-xl md:text-2xl font-semibold mb-4">{{t "Read next"}}</h2>
+
+          <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {{#foreach posts}}
+              {{> post-card}}
+            {{/foreach}}
+          </div>
+        </div>
+      </section>
+    {{/if}}
+  {{/get}}
+{{/is}}

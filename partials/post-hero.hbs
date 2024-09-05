@@ -1,0 +1,103 @@
+<section class="px-4 sm:px-6" data-post-hero="{{hero_type}}">
+  <div class="max-w-wide mx-auto py-12 flex items-center flex-col gap-8{{#match type "wide-split"}} md:flex-wrap md:flex-row md:items-center{{/match}}{{#unless feature_image}}  mb-12 relative before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-[1px] before:bg-fading{{/unless}}">
+
+    {{!-- Content --}}
+    <div class="text-typ-tone w-full flex-1 flex flex-col gap-4 mx-auto{{#match type "wide-split"}} max-w-wide flex-[2]{{else}} max-w-content{{/match}}" data-post-hero-content>
+      {{!-- Tag, date, reading time --}}
+      {{#is "post"}}
+          <div class="text-typ-tone flex gap-2">
+            {{#match lesson_style "one"}}
+                  {{#foreach tags visibility="internal" limit="1"}}
+                    {{#get "posts" include ="tags" filter="tag:{{slug}}+tag:hash-course"}}
+                      {{#if posts}}
+                        {{#foreach posts}}
+                        <a href="{{url}}" class="hover:text-brand">{{title}}</a>
+                        <span>·</span>
+                        {{/foreach}}
+                      {{/if}}
+                    {{/get}}
+                  {{/foreach}}
+              {{else}}
+                {{#match course_style "one"}}
+
+                  {{#foreach tags visibility="internal" limit="1"}}
+                  {{#get "posts" filter="tag:[hash-lesson]+tag:{{slug}}" order="title asc" include="tags,authors"}}
+                      <span>{{plural posts.length empty='No Lessons available' singular='Total % Lessons available' plural='Total % Lessons available'}}</span>
+                      <span>·</span>
+                  {{/get}}
+                  {{/foreach}}
+
+                {{else}}
+                    {{#foreach tags limit="1"}}
+                      <a href="{{url}}" class="hover:text-brand">{{name}}</a>
+                      <span>·</span>
+                    {{/foreach}}
+                {{/match}}
+            {{/match}}
+            <time class="whitespace-nowrap" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+          </div>
+      {{/is}}
+
+      {{!-- Title --}}
+      <h1 class="text-typ font-semibold tracking-tight text-2xl md:text-3xl lg:text-4xl{{^is "post"}} xl:text-5xl{{/is}}">
+        {{title}}
+      </h1>
+
+      {{!-- Excerpt --}}
+      {{#if custom_excerpt}}
+        <p class="text-lg md:text-xl font-light{{#match type "wide-split"}} md:hidden{{/match}}">{{custom_excerpt}}</p>
+      {{/if}}
+
+      {{!-- Authors --}}
+      {{#is "post"}}
+        <ul class="flex gap-3" data-post-hero-authors>
+          {{#foreach authors limit="all"}}
+            <li>
+              <a href="{{url}}" class="flex gap-1.5 items-center hover:text-brand">
+                {{#if profile_image}}
+                  {{> image
+                    image_type="author"
+                    image_alt=" "
+                    image_class="size-8 object-cover rounded-full"
+                    image_url=profile_image
+                    size_xxs=true
+                    size_xs=true
+                    sizes="32px"
+                  }}
+                {{/if}}
+                <span>{{name}}</span>
+              </a>
+            </li>
+          {{/foreach}}
+        </ul>
+      {{/is}}
+      
+
+    {{#match type "wide-split"}}
+      {{#if custom_excerpt}}
+        <p class="text-typ-tone text-lg font-light hidden md:block flex-1">{{custom_excerpt}}</p>
+      {{/if}}
+    {{/match}}
+    </div>
+
+    {{!-- Feature image --}}
+    {{#if feature_image}}
+      <figure class="{{#match type "simple"}}max-w-content {{else}}max-w-wide {{/match}}w-full h-full relative{{#match type "no-image"}} hidden{{/match}} {{#match type "wide-split"}} max-w-wide flex-[2]{{else}} max-w-content{{/match}}">
+        {{> image
+          image_type="post"
+          image_class="w-full object-cover rounded-theme-xs aspect-[16/9] border border-brd bg-bgr-tone"
+          image_url=feature_image
+          size_s=true
+          size_m=true
+          size_l=true
+          size_xl=true
+          sizes="(max-width: 600px) 480px, 720px"
+          loading="eager"
+        }}
+        {{!-- Figcaption --}}
+        {{#if feature_image_caption}}<figcaption class="mt-2 opacity-80 text-center text-sm [&>a]:text-brand [&>a]:underline [&>a]:decoration-2 [&>a:hover]:text-brand">{{feature_image_caption}}</figcaption>{{/if}}
+      </figure>
+    {{/if}}
+
+  </div>
+</section>

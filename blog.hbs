@@ -1,33 +1,58 @@
 {{!< default}}
-<div class="hero-area relative pt-20">
-    <div class="container mx-auto">
-        <div class="hero-box-3 relative grid gap-6 grid-cols-1 lg:grid-cols-12 items-center text-center lg:text-left">
-            <div class="lg:col-span-8">
-                <div class="hero-content lg:flex flex-wrap text-center lg:text-left relative lg:pr-14">
-                    <h4 class="font-serif !leading-normal text-4xl lg:text-6xl text-gray-800 font-bold mb-6">{{t "Blog"}}</h4>
-                    {{#if @site.description}}
-                    <p class="text-xl text-gray-400 font-normal">{{@site.description}}</p>
-                    {{/if}}
-                </div>
-            </div>
-            {{#if cover_image}}
-            <div class="lg:col-span-4">
-                <div class="feature-image relative" data-aos="fade" data-aos-delay="100">
-                    <img class="w-full rounded-xl" src="/cdn-cgi/image/width=518,quality=100/{{img_url cover_image}}" alt="{{@site.title}}">
-                </div>
-            </div>
-            {{/if}}
-        </div>
-    </div>
-</div>
 
-<section class="course-area py-20 xl:py-28">
-    <div class="container mx-auto">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 posts">
-            {{#foreach posts limit="all"}}
-            {{> cards/card-post}}
-            {{/foreach}}
-        </div>
-        {{pagination}}
+{{!-- Featured tags list --}}
+{{#match @custom.featured_tags_layout "list"}}
+  <section class="px-4 sm:px-6 mt-16" data-featured-tags>
+    <div class="max-w-container mx-auto">
+      {{> featured-tags-list }}
     </div>
+  </section>
+{{/match}}
+
+{{!-- Latest posts --}}
+<section class="px-4 sm:px-6 mb-24" data-feed-section="{{posts.length}}">
+  <div class="max-w-container mx-auto">    
+    <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5{{#if @custom.featured_tags}}{{#match @custom.featured_tags_layout "list"}} sr-only{{/match}}{{/if}}">
+      {{t "Latest"}} {{#if "paged"}} — {{t "page"}} {{pagination.page}}{{/if}}
+    </h2>
+
+    {{!-- Feed --}}
+    {{> post-feed}}
+
+    {{!-- Pagination --}}
+    {{> pagination}}
+  </div>
 </section>
+
+{{!-- Featured tags cards --}}
+  {{#if @custom.featured_tags_for_blog}}
+    {{#get "tags" filter="slug:[{{@custom.featured_tags_for_blog}}]" include="count.posts" limit="all"}}
+      {{#if tags}}
+        <section class="px-4 sm:px-6 mb-24" data-featured-tags="cards">
+          <div class="max-w-container mx-auto">
+            <div class="flex justify-between items-center border-b border-brd mb-6 pb-2.5">
+              <h2 class="text-sm font-semibold uppercase text-typ-tone">{{t "Topics"}}</h2>
+
+              <div class="flex gap-1">
+                <button class="p-1 hover:text-brand" aria-label="{{t "Prev"}}" 
+                  @click="handleSnapScroll(-1);">
+                  {{> icon name="arrow-left"}}
+                </button>
+
+                <button class="p-1 hover:text-brand" aria-label="{{t "Next"}}" 
+                  @click="handleSnapScroll(1);">
+                  {{> icon name="arrow-right"}}
+                </button>
+              </div>
+            </div>
+
+            <ul class="flex gap-6 overflow-x-scroll snap-x snap-mandatory no-scrollbar" data-tag-cards data-active="0">
+              {{#foreach tags}}
+                {{> tag-card card_class="flex-1 min-w-64 snap-start"}}
+              {{/foreach}}
+            </ul>
+          </div>
+        </section>
+      {{/if}}
+    {{/get}}
+  {{/if}}

@@ -1,0 +1,51 @@
+{{!< default}}
+
+{{#if @member.paid}}
+
+  {{!-- Logged in, paying member: Redirect home --}}
+  <script>window.location = '{{@site.url}}';</script>
+
+{{else if @member}}
+
+  {{!-- Logged in, paying member: Redirect to account page --}}
+  <script>window.location = '{{@site.url}}/#/portal/account/';</script>
+  
+{{else}}    
+
+  <section class="px-4 sm:px-6 page-signup relative flex items-center justify-center h-dvh">
+    <a href="{{@site.url}}" class="absolute top-4 left-4">
+      {{> logo}}
+    </a>
+
+    <div class="w-full max-w-sm mx-auto md:p-8 md:border md:border-brd rounded-theme">
+      {{#unless @site.members_invite_only}}
+        <h1 class="text-center font-semibold text-2xl sm:text-3xl mb-6">{{#page}}{{title}}{{else}}{{t "Sign up"}}{{/page}}</h1>
+        <p id="form-input-label" class="text-typ-tone mb-6">
+          {{#page}}
+            {{excerpt}}
+          {{else}}
+            {{t "Sign up to {site_title} to get access to premium content." site_title=@site.title}}
+          {{/page}}
+        </p>
+
+        {{!-- {{t "Continue"}} --}}
+        {{> subscribe-form
+          form_type="signup" 
+          form_class="w-full flex flex-col gap-4 rounded-theme-xl"
+          input_class="bg-bgr text-typ flex-[2] px-4 py-2.5 rounded-theme-md border border-brd focus:border-brand focus:ring-4 focus:ring-brand focus:ring-opacity-20"
+          button_class="flex-1 px-4 py-2.5 bg-brand text-brand-contrast font-medium rounded-theme-md md:px-6 hover:brightness-110"
+          button_text=(t 'Continue') 
+          name_field=true
+        }}
+      {{else}}
+        <p class="text-center mt-2">{{t "This site is invite-only, contact the owner for access."}}</p>
+      {{/unless}}
+      <p class="mt-3 text-center text-typ-tone">
+        <small>{{t "Already have an account?"}} 
+          {{#link class="underline hover:text-brand" href="/signin/"}}{{t "Sign in"}}{{/link}}
+        </small>
+      </p>
+    </div>
+  </section>
+
+{{/if}}

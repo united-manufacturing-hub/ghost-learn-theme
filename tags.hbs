@@ -1,0 +1,29 @@
+{{!< default}}
+
+{{#page}}
+  {{> page-hero}}
+{{else}}
+  <section class="px-4 sm:px-6">
+    <div class="max-w-2xl mx-auto py-16 flex flex-col gap-4 md:gap-6 items-center justify-center text-center">
+      <h1 class="font-semibold tracking-tight text-2xl sm:text-3xl md:text-5xl lg:text-5xl">{{t "Tags"}}</h1>
+    </div>
+  </section>
+{{/page}}
+
+{{!-- tags --}}
+{{#get "tags" include="count.posts" limit="all" order="count.posts desc"}}
+  <section class="px-4 sm:px-6 mb-24" data-tags>
+    <div class="max-w-container mx-auto">    
+      <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5">
+        {{tags.length}} {{t "Topics"}} 
+      </h2>
+
+      <ul class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+        {{#foreach tags}}
+          {{> tag-card card_class=""}}
+        {{/foreach}}
+      </ul>
+    </div>
+  </section>
+{{/get}}
+

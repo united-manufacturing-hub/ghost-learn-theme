@@ -1,0 +1,17 @@
+{{!-- Grid layout --}}
+{{#match @custom.post_feed_layout "grid"}}
+  <div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3" data-post-feed>
+    {{#foreach posts}}
+      {{> post-card }}
+    {{/foreach}}
+  </div>
+{{/match}}
+
+{{!-- List layout --}}
+{{#match @custom.post_feed_layout "list"}}
+  <div class="grid -mt-6" data-post-feed>
+    {{#foreach posts}}
+      {{> post-card-list }}
+    {{/foreach}}
+  </div>
+{{/match}}

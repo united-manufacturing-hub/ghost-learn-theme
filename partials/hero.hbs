@@ -1,0 +1,76 @@
+<section class="px-4 sm:px-6{{#match @custom.hero_background_style "none"}} mb-8{{else}} mb-16{{/match}}{{#match @custom.hero_background_style "brand-accent-color"}} bg-radial-gradient{{/match}}{{#match @custom.hero_background_style "full-width-cover-image"}} relative bg-bgr-tone{{/match}}" data-hero="{{@custom.hero_background_style}}">
+  <div class="{{#match @custom.hero_background_style "cover-image"}}relative px-4 {{/match}}py-16 md:py-24 max-w-container mx-auto flex flex-col items-center gap-6 lg:gap-8 md:flex-row">
+    <div class="z-[2] flex-1 flex flex-col gap-4 md:gap-6 justify-center max-w-2xl mx-auto items-center text-center" data-hero-content>
+      {{!-- Headline --}}
+      <h1 class="font-semibold tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+        data-hero-headline
+      >
+        {{#if @custom.hero_headline}}{{{@custom.hero_headline}}}{{else}}{{@site.title}}{{/if}}
+      </h1>
+
+      {{!-- Subheading --}}
+      {{#if @custom.hero_subheading}}
+        <p id="hero-input-label" class="font-light text-typ-tone text-lg md:text-xl">
+          {{{@custom.hero_subheading}}}
+        </p>
+      {{/if}}
+
+      {{!-- Action --}}
+      {{#match @custom.hero_action "cta"}}
+        {{#if @custom.cta_text}}
+          <a href="{{@custom.cta_link}}" 
+            class="shadow-btn border border-b-0 border-opac bg-brand text-sm md:text-base font-medium text-brand-contrast px-4 py-2 rounded-theme md:px-5 transition duration-300 hover:brightness-105 hover:shadow-btn-hover">
+            <span>{{@custom.cta_text}}</span>
+          </a>
+        {{/if}}
+      {{/match}}
+
+      {{#match @custom.hero_action "subscribe-form"}}
+        {{#unless @member}}
+          {{> subscribe-form
+            input_label="hero-input-label"
+            form_class="w-full max-w-md bg-bgr border border-brd flex flex-wrap rounded-theme-xl bg-bgr p-1
+                        focus-within:border-brand focus-within:ring-4 focus-within:ring-brand focus-within:ring-opacity-20"
+            input_class="bg-bgr text-typ flex-[2] py-2 rounded-theme border-none focus:ring-0"
+            button_class="flex-1 px-4 py-2 bg-bgr-reverse text-typ-reverse border border-brd font-medium rounded-theme md:px-6 hover:bg-brand hover:text-brand-contrast"
+          }}
+        {{/unless}}
+      {{/match}}
+    </div>
+    
+    {{#if @site.cover_image}}
+      {{#match @custom.hero_background_style "!=" "none"}}
+        <figure class="flex-1 h-full w-full rounded-theme-md overflow-hidden left-0 top-0{{#match @custom.hero_background_style "cover-image"}} bg-bgr-tone border border-brd mt-[-1px] absolute z-[1]{{/match }}{{#match @custom.hero_background_style "full-width-cover-image"}} bg-bgr-tone mt-[-1px] border-t border-b border-brd absolute z-[1] !rounded-none{{/match}}{{#match @custom.hero_background_style "none"}} hidden{{/match}}{{#match @custom.hero_background_style "brand-accent-color"}} hidden{{/match}}" 
+          data-hero-img="{{@custom.hero_background_style}}"
+        >
+          {{> image
+            picture_class="flex h-full"
+            image_type="site"
+            image_class="w-full object-cover object-center"
+            image_url=@site.cover_image
+            size_s=true
+            size_m=true
+            size_l=true
+            size_xl=true
+            size_xxl=true
+            sizes="(max-width: 360px) 300px, (max-width: 640px) 600px, (max-width: 1080px) 940px, (max-width: 1400px) 1200px, 1600px"
+            loading="eager"
+          }}
+        </figure>
+      {{/match}}
+    {{/if}}
+  </div>
+</section>
+
+{{!-- <section class="px-4 sm:px-6">
+  <div class="max-w-container mx-auto flex flex-col items-center gap-6 lg:gap-8 md:flex-row">
+    <div class="z-[2] flex-1 flex flex-col gap-4 md:gap-6 justify-center max-w-2xl mx-auto items-center text-center ghost-content">
+      {{#get "pages" filter="slug:community" as |community|}}
+        {{#community}}
+          {{content}}
+        {{/community}}
+      {{/get}}
+    </div>
+  </div>
+</section> --}}
+

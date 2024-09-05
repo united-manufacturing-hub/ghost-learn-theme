@@ -1,0 +1,20 @@
+{{#get "posts" filter="tag:{{slug}}" include="authors,tags" limit="3" order="published_at asc"}}
+  {{#if posts}}
+    <section class="px-4 sm:px-6 mb-24" data-featured-tag="{{../slug}}">
+      <div class="max-w-container mx-auto">
+        <div class="flex justify-between items-center border-b border-brd mb-6 pb-2.5">
+          <h2 class="text-sm font-semibold uppercase text-typ-tone">{{../name}}</h2>
+          <a class="flex items-center gap-0.5 text-sm font-medium hover:text-brand" href="{{../url}}">
+            {{../count.posts}} {{t "posts"}}
+            {{> icon name="chevron-right" icon_class="size-4"}}
+          </a>
+        </div>
+        <div class="grid gap-x-8 gap-y-12 sm:grid-cols-3">
+          {{#foreach posts}}
+            {{> post-card }}
+          {{/foreach}}
+        </div>
+      </div>
+    </section>
+  {{/if}}
+{{/get}}

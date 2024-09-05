@@ -1,154 +1,251 @@
 {
-	"name": "learn",
-	"description": "A clean, minimal default theme for the Ghost Learning Management System",
-	"demo": "https://learn.gthememarket.com/",
-	"version": "2.4.0",
-	"engines": {
-		"ghost": ">=5.0.0"
-	},
-	"license": "MIT",
-	"screenshots": {
-		"desktop": "assets/screenshot-desktop.jpg",
-		"mobile": "assets/screenshot-mobile.jpg"
-	},
-	"scripts": {
-		"dev": "gulp",
-		"zip": "gulp zip"
-	},
-	"author": {
-		"name": "Themeix",
-		"email": "support@themeix.org",
-		"url": "https://themeix.com"
-	},
-	"gpm": {
-		"type": "theme",
-		"categories": [
-			"Minimal",
-			"Magazine"
-		]
-	},
-	"keywords": [
-		"ghost",
-		"theme",
-		"ghost-theme"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/TryGhost/Casper.git"
-	},
-	"bugs": "https://github.com/TryGhost/Casper/issues",
-	"contributors": "https://github.com/TryGhost/Casper/graphs/contributors",
-	"dependencies": {
-		"@tryghost/content-api": "^1.11.4",
-		"aos": "^2.3.4",
-		"chart.js": "^3.8.0",
-		"infinite-scroll": "^4.0.1",
-		"jquery": "^3.6.1",
-		"magnific-popup": "^1.1.0",
-		"masonry-layout": "^4.2.2",
-		"prismjs": "^1.29.0",
-		"simptip": "^1.0.4",
-		"slick-carousel": "^1.6.37",
-		"tailwindcss": "^3.1.4"
-	},
-	"devDependencies": {
-		"@fullhuman/postcss-purgecss": "5.0.0",
-		"ansi-colors": "4.1.3",
-		"concat": "1.0.3",
-		"del": "6.0.0",
-		"gulp": "4.0.2",
-		"gulp-autoprefixer": "8.0.0",
-		"gulp-clean": "0.4.0",
-		"gulp-clean-css": "4.3.0",
-		"gulp-concat": "2.6.1",
-		"gulp-copy": "4.0.1",
-		"gulp-inject": "5.0.5",
-		"gulp-jshint": "2.1.0",
-		"gulp-plumber": "1.2.1",
-		"gulp-postcss": "9.0.1",
-		"gulp-purgecss": "5.0.0",
-		"gulp-rename": "2.0.0",
-		"gulp-replace": "1.1.3",
-		"gulp-sass": "5.1.0",
-		"gulp-size": "4.0.1",
-		"gulp-livereload": "4.0.2",
-		"gulp-terser": "2.1.0",
-		"gulp-uglify": "3.0.2",
-		"gulp-update": "0.0.2",
-		"gulp-zip": "5.1.0",
-		"jshint": "2.13.5",
-		"jshint-stylish": "2.2.1",
-		"postcss": "8.4.17",
-		"postcss-import": "15.0.0",
-		"run-sequence": "2.2.1",
-		"sass": "1.55.0"
-	},
-	"browserslist": [
-		"defaults"
-	],
-	"config": {
-		"posts_per_page": 12,
-		"image_sizes": {
-			"xxs": {
-				"width": 30
-			},
-			"xs": {
-				"width": 100
-			},
-			"s": {
-				"width": 300
-			},
-			"m": {
-				"width": 600
-			},
-			"l": {
-				"width": 1000
-			},
-			"xl": {
-				"width": 2000
-			}
-		},
-		"card_assets": true,
-		"custom": {
-			"contact_form_action_url": {
-				"type": "text",
-				"default": "https://submit-form.com/4HaTaFxz"
-			},
-			"back_to_scroll": {
-				"type": "boolean",
-				"default": true
-			},
-			"footer_note": {
-				"type": "text",
-				"default": "- Learn. All rights reserved."
-			},
-			"post_share_enabled": {
-				"type": "boolean",
-				"group": "post",
-				"default": true
-			},
-			"body_text_color": {
-				"type": "color",
-				"default": "#585F63"
-			},
-			"gradient_color2": {
-				"type": "color",
-				"default": "#74A9F3"
-			},
-			"color1": {
-				"type": "color",
-				"default": "#e5e7eb"
-			},
-			"color2": {
-				"type": "color",
-				"default": "#F1F6FD"
-			}
-		}
-	},
-	"renovate": {
-		"extends": [
-			"@tryghost:theme"
-		]
-	},
-	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "name": "flair",
+  "description": "Flair Ghost Theme",
+  "version": "1.2.0",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "type": "module",
+  "author": {
+    "name": "Bright Themes",
+    "email": "hi@brightthemes.com",
+    "url": "https://brightthemes.com"
+  },
+  "gpm": {
+    "type": "theme",
+    "categories": [
+      "Job board",
+      "Blog"
+    ]
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brightthemes/flair.git"
+  },
+  "scripts": {
+    "dev": "vite build --watch & vite",
+    "serve": "vite",
+    "watch": "vite build --watch",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "gscan . --verbose",
+    "zip": "npm run build && npm run test && mkdir -p dist && zip -r dist/${npm_package_name} . -x 'dist*' 'demo*' 'node_modules*' '.*' 'TODO.md'"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.13",
+    "@tryghost/content-api": "^1.11.21",
+    "@vitejs/plugin-legacy": "^5.4.1",
+    "alpinejs": "^3.14.0",
+    "autoprefixer": "^10.4.19",
+    "fitvids": "^2.1.1",
+    "gscan": "^4.43.1",
+    "postcss": "^8.4.38",
+    "postcss-mixins": "^9.0.4",
+    "tailwindcss": "^3.4.3",
+    "tocbot": "^4.28.2",
+    "vite": "^5.2.12"
+  },
+  "config": {
+    "card_assets": true,
+    "posts_per_page": 12,
+    "image_sizes": {
+      "xxs": {
+        "width": 30
+      },
+      "xs": {
+        "width": 100
+      },
+      "s": {
+        "width": 320
+      },
+      "m": {
+        "width": 640
+      },
+      "l": {
+        "width": 960
+      },
+      "xl": {
+        "width": 1280
+      },
+      "xxl": {
+        "width": 2000
+      }
+    },
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": [
+          "system",
+          "light",
+          "dark"
+        ],
+        "default": "system",
+        "description": "Set the default color scheme of the site"
+      },
+      "font_headings": {
+        "type": "select",
+        "options": [
+          "System",
+          "DM Sans",
+          "Figtree",
+          "Inter",
+          "Kode Mono",
+          "Lexend",
+          "Noto Serif",
+          "Outift",
+          "Playfair",
+          "Sen",
+          "Source Serif 4",
+          "Space Grotesk"
+        ],
+        "default": "DM Sans",
+        "description": "Set the font family for all headings (h1-h6)"
+      },
+      "font_body": {
+        "type": "select",
+        "options": [
+          "System",
+          "DM Sans",
+          "Figtree",
+          "Inter",
+          "Kode Mono",
+          "Lexend",
+          "Noto Serif",
+          "Outfit",
+          "Playfair",
+          "Sen",
+          "Source Serif 4",
+          "Space Grotesk"
+        ],
+        "default": "DM Sans",
+        "description": "Set the font family for all elements excerpt headings"
+      },
+      "dark_theme_logo": {
+        "type": "image",
+        "description": "Logo for the dark theme"
+      },
+      "cta_text": {
+        "type": "text",
+        "description": "Set the main CTA button text"
+      },
+      "cta_link": {
+        "type": "text",
+        "description": "Set the main CTA button URL"
+      },
+      "sticky_header": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable the sticky header"
+      },
+      "header_action": {
+        "type": "select",
+        "options": [
+          "cta",
+          "signin-signup",
+          "subscribe"
+        ],
+        "default": "cta",
+        "description": "Set the main action for the header"
+      },
+      "hero_headline": {
+        "type": "text",
+        "group": "homepage",
+        "description": "Set the homepage hero headline"
+      },
+      "hero_subheading": {
+        "type": "text",
+        "group": "homepage",
+        "description": "Set the homepage hero subheading"
+      },
+      "hero_background_style": {
+        "type": "select",
+        "options": [
+          "cover-image",
+          "full-width-cover-image",
+          "brand-accent-color",
+          "none"
+        ],
+        "default": "none",
+        "group": "homepage",
+        "description": "Set the site cover image style for the hero section"
+      },
+      "hero_action": {
+        "type": "select",
+        "options": [
+          "cta",
+          "subscribe-form",
+          "none"
+        ],
+        "default": "subscribe-form",
+        "group": "homepage",
+        "description": "Set the homepage hero action"
+      },
+      "featured_tags": {
+        "type": "text",
+        "group": "homepage",
+        "description": "List of tag slugs to be featured as categories"
+      },
+      "featured_tags_for_blog": {
+        "type": "text",
+        "group": "homepage",
+        "description": "List of tag slugs to be featured as categories on the blog page"
+      },
+      "featured_tags_layout": {
+        "type": "select",
+        "options": [
+          "list",
+          "section",
+          "cards"
+        ],
+        "default": "list",
+        "group": "homepage",
+        "description": "Set the layout for the featured tags: list of links or topic sections"
+      },
+      "post_feed_layout": {
+        "type": "select",
+        "options": [
+          "grid",
+          "list"
+        ],
+        "default": "grid",
+        "group": "homepage",
+        "description": "Set the post feed layout"
+      },
+      "post_card_style": {
+        "type": "select",
+        "options": [
+          "minimal",
+          "bordered",
+          "shadowed"
+        ],
+        "default": "minimal",
+        "group": "homepage",
+        "description": "Set the post card style"
+      },
+      "post_card_access": {
+        "type": "boolean",
+        "default": true,
+        "group": "homepage",
+        "description": "Enable the access indicator on post cards (members/paid/tiers)"
+      },
+      "default_post_template": {
+        "type": "select",
+        "options": [
+          "narrow-feature-image",
+          "no-feature-image",
+          "wide-feature-image",
+          "with-table-of-contents"
+        ],
+        "default": "narrow-feature-image",
+        "group": "post",
+        "description": "Set the default post template for your posts"
+      }
+    }
+  }
 }

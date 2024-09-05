@@ -1,0 +1,51 @@
+{{!< default}}
+
+{{#page}}
+  {{> page-hero}}
+{{else}}
+  <section class="px-4 sm:px-6">
+    <div class="max-w-2xl mx-auto py-16 flex flex-col gap-4 md:gap-6 items-center justify-center text-center">
+      <h1 class="font-semibold tracking-tight text-2xl sm:text-3xl md:text-5xl lg:text-5xl">{{t "Membership"}}</h1>
+    </div>
+  </section>
+{{/page}}
+
+<section class="px-4 sm:px-6" data-plan="{{@site.portal_default_plan}}" data-plans="{{@site.portal_plans}}" data-member-status="{{#if @member}}{{@member.status}}{{else}}none{{/if}}"
+  x-init="$nextTick(() => { calculateDiscounts() })"
+>
+  {{#if @member.paid}}
+    {{!-- Redirect --}}
+    <script>window.location = '{{@site.url}}/membership/#/portal/account/';</script>
+  {{else if @member}}
+    {{!-- For free member show paid plans only --}}
+    {{> member-tiers type="paid"}}
+  {{else}}
+    {{!-- Show all plans --}}
+    {{> member-tiers type="free,paid"}}
+  {{/if}}
+
+  {{!-- To add some additional content create the /membership/ page --}}
+  {{#page}}
+    {{#if access}}
+      <article class="{{post_class}} pt-16 ghost-content prose md:prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
+        {{content}}
+      </article>
+    {{/if}}
+  {{/page}}
+
+  {{#contentFor "scripts"}}
+    <script>
+      const onDataPlanSwitch = (value) => {
+        document.querySelector('.js-membership').setAttribute('data-plan-type', value);
+      };
+      document.querySelectorAll('[data-discount][data-monthly-price]').forEach(plan => {
+        const monthly = parseFloat(plan.getAttribute('data-monthly-price'));
+        const yearly = parseFloat(plan.getAttribute('data-yearly-price'));
+        const discount = Math.round(100 - parseInt((yearly/(12*monthly)) * 100));
+        if ( discount > 0 && discount < 100 ) {
+          plan.setAttribute('data-discount', `${discount}%`);
+        }
+      })
+    </script>
+  {{/contentFor}}
+</div>

@@ -1,0 +1,74 @@
+{{!< default}}
+
+{{!-- Hero section --}}
+{{> hero }}
+
+{{!-- Featured posts --}}
+{{> featured-posts }}
+
+{{!-- Featured tags list --}}
+{{#match @custom.featured_tags_layout "list"}}
+  <section class="px-4" data-featured-tags="list">
+    <div class="max-w-container mx-auto">
+      {{> featured-tags-list }}
+    </div>
+  </section>
+{{/match}}
+
+{{!-- Featured tags sections --}}
+{{#match @custom.featured_tags_layout "section"}}
+  {{#if @custom.featured_tags}}
+    {{#get "tags" filter="slug:[{{@custom.featured_tags}}]" include="count.posts" limit="all"}}
+      {{#foreach tags}}
+        {{> featured-tags-section }}
+      {{/foreach}}
+    {{/get}}
+  {{/if}}
+{{/match}}
+
+{{!-- Featured tags cards --}}
+{{#match @custom.featured_tags_layout "cards"}}
+  {{#if @custom.featured_tags}}
+    {{#get "tags" filter="slug:[{{@custom.featured_tags}}]" include="count.posts" limit="all"}}
+      {{#if tags}}
+        <section class="px-4 sm:px-6 mb-24" data-featured-tags="cards">
+          <div class="max-w-container mx-auto">
+            <div class="flex justify-between items-center border-b border-brd mb-6 pb-2.5">
+              <h2 class="text-sm font-semibold uppercase text-typ-tone">{{t "Topics"}}</h2>
+
+              <div class="flex gap-1">
+                <button class="p-1 hover:text-brand" aria-label="{{t "Prev"}}" 
+                  @click="handleSnapScroll(-1);">
+                  {{> icon name="arrow-left"}}
+                </button>
+
+                <button class="p-1 hover:text-brand" aria-label="{{t "Next"}}" 
+                  @click="handleSnapScroll(1);">
+                  {{> icon name="arrow-right"}}
+                </button>
+              </div>
+            </div>
+
+            <ul class="flex gap-6 overflow-x-scroll snap-x snap-mandatory no-scrollbar" data-tag-cards data-active="0">
+              {{#foreach tags}}
+                {{> tag-card card_class="flex-1 min-w-64 snap-start"}}
+              {{/foreach}}
+            </ul>
+          </div>
+        </section>
+      {{/if}}
+    {{/get}}
+  {{/if}}
+{{/match}}
+
+{{!-- Latest posts --}}
+{{!-- <section class="px-4 mb-24" data-feed-section="{{posts.length}}">
+  <div class="max-w-container mx-auto">
+    <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5{{#if @custom.featured_tags}}{{#match @custom.featured_tags_layout "list"}} sr-only{{/match}}{{/if}}">{{t "Latest"}}</h2>
+
+    {{> post-feed}}
+    
+    {{> pagination}}
+  </div>
+</section> --}}
+

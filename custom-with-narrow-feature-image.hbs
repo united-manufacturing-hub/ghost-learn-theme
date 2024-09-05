@@ -1,0 +1,22 @@
+{{!< default}}
+
+{{#post}}
+  {{!-- Hero section --}}
+  {{> post-hero type="simple"}}
+
+  {{!-- Content --}}
+  <article class="ghost-content prose md:prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
+    {{content}}
+  </article>
+
+  {{!-- Share --}}
+  {{> social-share
+    item_class="border border-brd bg-bgr leading-tight p-1.5 flex-1 flex gap-1.5 items-center justify-center rounded-theme hover:bg-bgr-tone"
+  }}
+
+  {{!-- Comments --}}
+  {{> comments}}
+{{/post}}
+
+{{!-- Related posts --}}
+{{> related-posts}}

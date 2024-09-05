@@ -688,7 +688,7 @@
 }
 
 .padding-section-small {
-  padding-top: 3rem;
+  padding-top: 0;
   padding-bottom: 3rem;
 }
 
@@ -2704,6 +2704,8 @@
   bottom: auto;
   left: 0%;
   right: 0%;
+  position: relative;
+  z-index: 10000;
 }
 
 .nav-absolute-wrapper.on-bright-bg {

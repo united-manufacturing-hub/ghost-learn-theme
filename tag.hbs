@@ -1,46 +1,49 @@
 {{!< default}}
+
+
 {{#tag}}
-<div class="hero-area relative pt-20  topic-{{@number}}">
-   <div class="container mx-auto">
-      <div class="page-title-box">
-         <div class="section-title max-w-4xl ">
-            {{#get "posts" include="tags,authors" filter="tag:{{slug}}" limit="all"}}
-            {{#contentFor "postCount"}}
-            <p class="post-count text-base !leading-normal text-gray-400 mb-2 ">{{plural posts.length empty='No posts
-               available' singular='Total % post available' plural='Total % posts available'}} 
-            </p>
-            {{/contentFor}}
-            {{#contentFor "courseCount"}}
-            <p class="mb-2 text-sm px-3 py-1  bg-blue-800 text-white rounded inline-block ">{{plural posts.length empty='No Courses available' singular='Total % Course available' plural='Total % Courses available'}} </p>
-            {{/contentFor}}
-            {{#foreach posts limit="1"}}
-            {{#has tag="#blog"}}
-            {{{block "postCount"}}}
-            {{else}}
-            {{{block "courseCount"}}}
-            {{/has}}
-            {{/foreach}}
-            {{/get}}
-            <h4 class="tag-name font-serif text-4xl lg:text-5xl text-gray-800 font-bold ">{{name}}</h4>
-            {{#if description}}
-            <p class="tag-description text-lg text-gray-400 !leading-normal font-normal pt-8">{{description}}</p>
-             {{/if}}
-         </div>
-      </div>
-   </div>
-</div>
+  <section class="px-4 sm:px-6{{#if feature_image}} mb-8{{/if}}" data-tag>
+    <div class="max-w-xl mx-auto py-16 md:py-20 flex flex-col gap-3 items-center justify-center text-center">
+      {{#if feature_image}}
+        <figure class="rounded-full h-full relative">
+          {{> image
+            image_type="tag"
+            image_class="w-full object-cover w-20 h-20 rounded-full aspect-square"
+            image_url=feature_image
+            size_xs=true
+            size_s=true
+            size_m=true
+            sizes="(max-width: 600px) 100px, 160px"
+            loading="eager"
+          }}
+        </figure>
+      {{/if}}
+      <h1 class="font-semibold tracking-tight text-2xl md:text-3xl lg:text-4xl xl:text-5xl">{{name}}</h1>
+      {{#if description}}
+        <p class="font-light text-lg text-typ-tone">{{description}}</p>
+      {{/if}}
+    </div>
+  </section>
 {{/tag}}
-<section class="course-area py-20 ">
-   <div class="container mx-auto">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 posts">
-         {{#foreach posts}}
-         {{#has tag="#blog"}}
-         {{> cards/card-post}}
-         {{else}}
-         {{> cards/card-course}}
-         {{/has}}
-         {{/foreach}}
-      </div>
-      {{pagination}}
-   </div>
+
+{{!-- Featured tags list --}}
+{{#match @custom.featured_tags_layout "list"}}
+  <section class="px-4 sm:px-6" data-featured-tags>
+    <div class="max-w-container mx-auto">
+      {{> featured-tags-list }}
+    </div>
+  </section>
+{{/match}}
+
+{{!-- Posts --}}
+<section class="px-4 sm:px-6 mb-24" data-feed-section="{{posts.length}}">
+  <div class="max-w-container mx-auto">
+    <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5{{#if @custom.featured_tags}}{{#match @custom.featured_tags_layout "list"}} sr-only{{/match}}{{/if}}">{{t "Latest"}}</h2>
+
+    {{!-- Feed --}}
+    {{> post-feed}}
+    
+    {{!-- Pagination --}}
+    {{> pagination}}
+  </div>
 </section>

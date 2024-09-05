@@ -1,49 +1,77 @@
 {{!< default}}
-{{> preloader}}
+
 {{#post}}
-{{> hero-section course_style="one"}}
-<script> let tiersID = []; </script>
-<section class="lesson-area py-20">
-   <div class="course-page-content gh-content gh-canvas pb-20 xl:pb-20  max-w-4xl mx-auto">
-      {{content}}
-   </div>
-   <div class="gh-canvas  max-w-4xl mx-auto">
-      <div class="lesson-plan-block  mb-10  ">
-         <h3 class="font-serif text-2xl lg:text-4xl text-gray-800 font-bold  text-center pb-3">{{t "Course Lessons"}}</h3>
-         <p class=" text-xl  text-gray-400   mb-10  text-center">{{t "Here following the lesson list for that course"}}</p>
-      </div>
+  {{!-- Hero section --}}
+  {{> post-hero type="wide-split" course_style="one"}}
+
+  {{!-- Content --}}
+  <article class="ghost-content prose md:prose-lg prose-theme"{{#unless access}} data-preview{{/unless}}>
+    {{content}}
+  </article>
+
+<section class="px-4 mb-24" data-feed-section="{{posts.length}}">
+  <div class="max-w-content mx-auto">
+    <div class="z-[2] flex-1 flex flex-col gap-4 mb-8 justify-center max-w-2xl mx-auto items-center text-center" data-hero-content>
+      <h2 class="font-semibold tracking-tight text-3xl sm:text-4xl md:text-4xl lg:text-5xl" data-hero-headline>
+        {{t "Course Lessons"}}
+      </h2>
+    </div>
+
+    <div class="grid -mt-6" data-post-feed>
       {{#foreach tags visibility="internal" limit="1"}}
-      {{#get "posts" include ="tags,authors,tiers" filter="tag:{{slug}}+tag:hash-course"}}
-      {{#if posts}}
-      {{#foreach posts }} 
-      {{#foreach tiers}}
-      <script> tiersID.push("#id-{{id}}"); </script>
-      {{/foreach}} 
+         {{#get "posts" filter="tag:[hash-lesson]+tag:{{slug}}" order="published_at asc" include="tags,authors"}}
+            {{#if posts}}
+               {{#foreach posts }}
+                  <article class="{{post_class}} {{card_class}} text-sm text-typ-tone" data-post-card>
+                    <a href="{{url}}" class="relative py-4 md:py-6 border-b border-brd grid grid-cols-3 md:grid-cols-6 gap-2 items-center sm:items-start before:content-[''] before:absolute before:-z-[1] before:h-full before:w-[calc(100%_+_32px)] before:-inset-x-4 before:rounded-theme-xxs hover:before:bg-bgr-tone">
+                      <div class="flex items-center flex-wrap gap-3 col-span-3 lg:col-span-5">
+                        {{!-- Title --}}
+                        <h3 class="text-typ md:text-base font-medium {{title_class}}" data-post-card-title>
+                          {{title}}
+                        </h3>
+                        
+                        {{!-- Featured --}}
+                        {{#if featured}}<span data-post-card-featured>{{> icon name="star" icon_class="size-4 text-yellow-400 fill-yellow-400 [&>svg]:fill-inherit"}}<span class="sr-only">{{t "Featured"}}</span></span>{{/if}}
+
+                        {{!-- Visibility --}}
+                        {{#if @custom.post_card_access}}
+                          {{#match visibility "!=" "public"}}
+                            <span class="text-[0.8rem] font-medium flex items-center gap-0.5 capitalize border border-brd bg-bgr-tone rounded-theme px-2 pr-2.5 py-0.5" data-post-card-visibility>
+                              {{#if access}}
+                                {{> icon name="lock-open" icon_class="-mt-0.5 size-4 text-green-500"}}
+                              {{else}}
+                                {{> icon name="lock" icon_class="-mt-0.5 size-4 text-rose-500"}}
+                              {{/if}}
+                              {{#has visibility="tiers"}}{{tiers}}{{else}}{{visibility}}{{/has}}
+                            </span>
+                          {{/match}}
+                        {{/if}}
+                      </div>
+                      <time class="" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time> 
+                    </a>
+                  </article>
+               {{/foreach}}
+            {{else}}
+            <div class="lesson-box-2 rounded-lg hover:shadow-lg duration-300 p-6 flex justify-between items-center group">
+               <h3>{{t "Nothing published yet for this course"}}</h3>
+            </div>
+            {{/if}}
+         {{/get}}
       {{/foreach}}
-      {{/if}}
-      {{/get}}
-      {{#get "posts" filter="tag:[hash-lesson]+tag:{{slug}}" order="published_at asc" include="tags,authors"}}
-      {{#if posts}}
-      {{#foreach posts }}
-      {{#if access}}
-      <a href="{{url}}">{{> lessonbox}}</a>
-      {{else}}
-      <a class="modal-open" href="#"> {{> lessonbox}} </a>
-      {{/if}}
-      {{/foreach}}
-      {{else}}
-      <div class="lesson-box-2 rounded-lg hover:shadow-lg duration-300 p-6 flex justify-between items-center group">
-         <h3>{{t "Nothing published yet for this course"}}</h3>
-      </div>
-      {{/if}}
-      {{/get}}
-      {{/foreach}}
-   </div>
-   <div class="gh-canvas">
-      <!-- {{> social-share style="one"}} -->
-      {{!-- {{> page-navigation}} --}}
-      {{> contact-expert-cta}}
-      {{> related-posts}}
-   </div>
+    </div>
+  </div>
 </section>
+
+
+
+  {{!-- Share --}}
+  {{> social-share
+    item_class="border border-brd bg-bgr leading-tight p-1.5 flex-1 flex gap-1.5 items-center justify-center rounded-theme hover:bg-bgr-tone"
+  }}
+
+  {{!-- Comments --}}
+  {{> comments}}
 {{/post}}
+
+{{!-- Related posts --}}
+{{> related-posts}}

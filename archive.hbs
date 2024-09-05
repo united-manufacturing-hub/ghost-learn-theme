@@ -1,0 +1,31 @@
+{{!< default}}
+
+{{#page}}
+  {{> page-hero}}
+{{else}}
+  <section class="px-4 sm:px-6">
+    <div class="max-w-2xl mx-auto py-16 flex flex-col gap-4 md:gap-6 items-center justify-center text-center">
+      <h1 class="font-semibold tracking-tight text-2xl sm:text-3xl md:text-5xl lg:text-5xl">{{t "Archive"}}</h1>
+    </div>
+  </section>
+{{/page}}
+
+{{!-- posts --}}
+<section class="px-4 sm:px-6 mb-24" data-feed-section="{{posts.length}}">
+  <div class="max-w-container mx-auto">    
+    <h2 class="text-sm font-semibold uppercase text-typ-tone border-b border-brd mb-6 pb-2.5">
+      {{pagination.total}} {{t "posts"}} 
+    </h2>
+
+    {{!-- Feed --}}
+    <div class="grid -mt-6" data-post-feed>
+      {{#foreach posts}}
+        {{> post-card-list }}
+      {{/foreach}}
+    </div>
+
+    {{!-- Pagination --}}
+    {{> pagination}}
+  </div>
+</section>
+

@@ -1,0 +1,17 @@
+{{!-- Comments --}}
+{{#is "post"}}
+  {{#if comments}}
+    {{#if access}}
+      <section class="px-4 sm:px-6 mb-12" id="comments" data-comments>
+        <div class="px-4 sm:px-6 rounded-theme-xs pt-4 bg-bgr-tone max-w-content mx-auto border border-brd">
+          {{!-- {{t "Comments"}} --}}
+          {{comments 
+            title=(t 'Comments')
+            count=true
+            mode=auto
+          }}
+        </div>
+      </section>
+    {{/if}}
+  {{/if}}
+{{/is}}
