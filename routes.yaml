@@ -33,7 +33,7 @@ collections:
   /featured/:
     permalink: /blog/{slug}/
     template: featured
-    # filter: "tag:it-ot-architecture"
+    filter: "tag:it-ot-architecture"
 
   # /blog/:
   #   permalink: /blog/{slug}/
