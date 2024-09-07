@@ -27,7 +27,7 @@ collections:
   /guides/:
     permalink: /course/{slug}/
     template: courses
-    filter: "tag:hash-course"
+    filter: "tags:-[it-ot-architecture]"
     order: "published_at desc"
 
   /featured/:
