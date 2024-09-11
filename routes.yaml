@@ -27,13 +27,13 @@ collections:
   /guides/:
     permalink: /course/{slug}/
     template: courses
-    filter: "tag:hash-course"
+    filter: "tags:-[it-ot-architecture]"
     order: "published_at desc"
 
   /featured/:
     permalink: /blog/{slug}/
     template: featured
-    # filter: "tag:it-ot-architecture"
+    filter: "tag:it-ot-architecture"
 
   # /blog/:
   #   permalink: /blog/{slug}/
