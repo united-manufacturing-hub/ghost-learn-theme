@@ -5101,6 +5101,7 @@
   padding: .25rem 1rem .25rem 0;
   transition: opacity .2s;
   display: flex;
+  margin-left: 0;
 }
 
 .footer_link_dropdown-toggle:hover {
