@@ -16,6 +16,21 @@
         }}
       </figure>
     </a>
+  {{else}}
+    <a href="{{url}}" class="block">
+      <figure class="rounded-theme-xxs border border-brd overflow-hidden">
+        {{> image
+          image_type="post"
+          image_class="aspect-[16/9] bg-bgr-tone object-cover w-full h-auto rounded-[inherit]"
+          image_url="https://learn.umh.app/content/images/2024/09/thumbnail.jpg"
+          size_s=true
+          size_m=true
+          size_l=true
+          sizes="(max-width: 400px) 300px, 400px"
+          loading=image_loading
+        }}
+      </figure>
+    </a>
   {{/if}}
 
   <div class="flex h-full flex-col gap-2{{#match @custom.post_card_style "bordered"}} px-3 pb-3{{#unless feature_image}} pt-3{{/unless}}{{/match}}{{#match @custom.post_card_style "shadowed"}} px-3 pb-3{{#unless feature_image}} pt-3{{/unless}}{{/match}}" data-post-card-content>
