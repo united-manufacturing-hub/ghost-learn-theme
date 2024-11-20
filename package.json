@@ -47,7 +47,7 @@
     "gscan": "^4.43.1",
     "postcss": "^8.4.38",
     "postcss-mixins": "^9.0.4",
-    "tailwindcss": "^3.4.3",
+    "tailwindcss": "^3.4.14",
     "tocbot": "^4.28.2",
     "vite": "^5.4.10"
   },
