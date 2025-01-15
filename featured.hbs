@@ -29,7 +29,7 @@
 
 {{!-- Featured tags cards --}}
   {{#if @custom.featured_tags_for_blog}}
-    {{#get "tags" filter="slug:[{{@custom.featured_tags_for_blog}}]" include="count.posts" limit="all"}}
+    {{#get "tags" filter="slug:[{{@custom.featured_tags_for_blog}}]+tags:-[videos]" include="count.posts" limit="all"}}
       {{#if tags}}
         <section class="px-4 sm:px-6 mb-24" data-featured-tags="cards">
           <div class="max-w-container mx-auto">
