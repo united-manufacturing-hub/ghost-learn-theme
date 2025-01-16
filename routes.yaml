@@ -1,6 +1,9 @@
 ## routes.yaml
 
 routes:
+  /videos/:
+    controller: channel
+    filter: tag:videos
   /archive/:
     controller: channel
     template: archive
