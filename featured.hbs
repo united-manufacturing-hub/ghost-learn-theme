@@ -18,7 +18,7 @@
 
     {{!-- Feed --}}
 
-    {{#get "posts" filter="featured:true" include="count.posts" limit="all"}}
+    {{#get "posts" filter="featured:true+tags:-[videos]" include="count.posts" limit="all"}}
     {{> post-feed}}
     {{/get}}
 

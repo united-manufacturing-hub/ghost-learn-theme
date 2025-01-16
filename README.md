@@ -1,5 +1,22 @@
 # Flair - Ghost theme
 
+## Structure
+
+### Homepage (index.hbs)
+
+- Top 3 featured posts
+- Course: Unified Namespace
+- Course: Introduction to IT / OT Architecture
+
+### Featured Articles (featured.hbs)
+- All posts that are featured and not a video
+
+### Videos (routes.yaml + /videos/)
+- All posts that are a video
+
+### Other (courses.hbs)
+- All posts that are not featured and not a video
+
 
 ## Requirements
 
