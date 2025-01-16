@@ -18,7 +18,7 @@
 
     {{!-- Feed --}}
 
-    {{#get "posts" filter="tag:it-ot-architecture" include="count.posts" limit="all"}}
+    {{#get "posts" filter="featured:true" include="count.posts" limit="all"}}
     {{> post-feed}}
     {{/get}}
 
@@ -26,36 +26,3 @@
     {{!-- {{> pagination}} --}}
   </div>
 </section>
-
-{{!-- Featured tags cards --}}
-  {{#if @custom.featured_tags_for_blog}}
-    {{#get "tags" filter="slug:[{{@custom.featured_tags_for_blog}}]+tags:-[videos]" include="count.posts" limit="all"}}
-      {{#if tags}}
-        <section class="px-4 sm:px-6 mb-24" data-featured-tags="cards">
-          <div class="max-w-container mx-auto">
-            <div class="flex justify-between items-center border-b border-brd mb-6 pb-2.5">
-              <h2 class="text-sm font-semibold uppercase text-typ-tone">{{t "Topics"}}</h2>
-
-              <div class="flex gap-1">
-                <button class="p-1 hover:text-brand" aria-label="{{t "Prev"}}" 
-                  @click="handleSnapScroll(-1);">
-                  {{> icon name="arrow-left"}}
-                </button>
-
-                <button class="p-1 hover:text-brand" aria-label="{{t "Next"}}" 
-                  @click="handleSnapScroll(1);">
-                  {{> icon name="arrow-right"}}
-                </button>
-              </div>
-            </div>
-
-            <ul class="flex gap-6 overflow-x-scroll snap-x snap-mandatory no-scrollbar" data-tag-cards data-active="0">
-              {{#foreach tags}}
-                {{> tag-card card_class="flex-1 min-w-64 snap-start"}}
-              {{/foreach}}
-            </ul>
-          </div>
-        </section>
-      {{/if}}
-    {{/get}}
-  {{/if}}
